@@ -1,4 +1,4 @@
-## <img src="https://github.com/DRAWSVG/drawsvg-editor/build/jay-rond.png" width="60px" align="center" alt="DRAWSVG icon"> SVG Editor
+## <img src="https://github.com/DRAWSVG/drawsvg-editor/blob/main/build/jay-rond.png?raw=true" width="32px" align="center" alt="DRAWSVG icon"> SVG Editor
 
  SVG Editor from [DRAWSVG](https://drawsvg.org)
 
