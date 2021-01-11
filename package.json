@@ -16,6 +16,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
+  "repository": "https://github.com/DRAWSVG/drawsvg-editor",  
   "build": {
     "appId": "com.github.drawsvg.editor",
     "asar": true,
