@@ -1,0 +1,981 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='550' height='350' viewBox="0 0 550 350" onload='init(evt)'>
+<script type="text/ecmascript"><![CDATA[
+
+// API externe
+ window.parent.gradientEditor = {
+	   load : loadList,
+	   selectGradient : selectGrd,
+	   removeGradient :  removeSelectedGradient,
+	   getGradientId : function()  {return gradient == null ? null : getId(gradient);},
+	   getColor : function() {return colorO == null ? null : getFill(colorO);},
+	   setColor : setSelectedColor,
+	   getStopCount : function() {return stope==null ? 0 : stope.length;},
+	   addLinear : addLinearGradient,
+	   addRadial : addRadialGradient,
+	   copyGradient : copySelectedGradient,
+	   removeColor : removeSelectedColor,
+	   addColor : addGradientStopColor,
+	   getModifedList : function() {return arrayToStringList(ma," ");},
+	   getDeletedList : function() {return arrayToStringList(da," ");},
+	   getCreatedList : function() {return arrayToStringList(ca," ");}
+	 };
+	 
+        var root,svgdoc,hglist,hbglist;
+        var gradient = null,vector,stopOffsets,bOpacity,colorO,stopO,colo,glist,bglist,glistc=null;
+	var circle,center,radius,focal,tcx,tcy,tfx,tfy,tr,tx1,ty1,tx2,ty2;
+	var methodValue = new Array("pad","repeat","reflect");
+	var method = "pad";
+	var fw2svg = 800/800;
+	var fp1p2=1, fstop=2, fopacity=2;
+	var mvX0,mvY0,mvX1,mvY1,mv=false;
+	var p1,p2,stop,stopc,stope;
+	var vOpacity = 0.2;
+	var listH=300,barH=270;
+	var lastId=1;
+	var ma = new Array(),da=new Array(),ca=new Array();
+	
+
+        function init(evt) {
+		try {
+	    root=evt.target;
+	    svgdoc=evt.target.ownerDocument;
+	    vector = get("vector");
+	    p1 = get("p1");
+	    p2 = get("p2");
+	    stopOffsets = get("stopOffsets");
+	    bOpacity = get("bOpacity");
+	    glist = get("glist");
+	    bglist = get("bglist");
+	    circle= get("circle");
+	    center= get("center");
+	    radius= get("radius");
+	    focal= get("focal");
+	    tcx= get("tcx");
+	    tcy= get("tcy");
+	    tfx= get("tfx");
+	    tfy= get("tfy");
+	    tr= get("tr");
+	    tx1= get("tx1");
+	    ty1= get("ty1");
+	    tx2= get("tx2");
+	    ty2= get("ty2");
+	    align();
+	    
+	    // notification
+	if (parent.svgViewerNotifyOnLoad) parent.svgViewerNotifyOnLoad(evt);
+		}
+		catch(ex) {alert(ex);}
+	   
+        }
+	function align() {
+		setBBoxRect(get("r1"),get("t1"),2,0);
+		setBBoxRect(get("r2"),get("t2"),2,0);
+		setBBoxRect(get("r3"),get("t3"),2,0);
+		setBBoxRect(get("r4"),get("t4"),2,0);
+		setBBoxRect(get("r5"),get("t5"),2,0);
+		setBBoxRect(get("r6"),get("t6"),2,0);
+		setBBoxRect(get("r7"),get("t7"),2,0);
+	}
+	function loadGrdList() {
+		var l = new Array(svgdoc.getElementsByTagName("linearGradient"),svgdoc.getElementsByTagName("radialGradient"));
+		var g = new Array();
+		var n=0;
+		for (var j=0;j < 2;j++) {
+			for (var i=0;i < l[j].length;i++) {
+				var k = getId(l[j].item(i));
+				if (k != "__defaultLinear" && k != "__defaultRadial") g[n++]=k;
+			}
+		}
+		return g;
+	}
+	function drawGrd(y,g) {
+		setId(setFillGrd(setWidth(setHeight(setY(setX(glist.appendChild(create("rect")),0),y),50),70),g),"r"+g);
+		setId(setVisibility(setTextAnchor(setY(setX(glist.appendChild(create("text")),35),y+25),"middle"),"hidden"),"t"+g).appendChild(createTextNode(g));
+		//setId(setVisibility(setTextAnchor(setY(setX(glist.appendChild(create("text")),100),300),"middle"),"hidden"),"t"+g).appendChild(createTextNode(g));
+		return y +50;
+	}
+	function setScrollbar(y) {
+		hglist = y;
+		if (hglist > listH) {
+			hbglist= listH/hglist*barH;
+			setHeight(bglist,hbglist);
+		}
+	}
+	function loadList() {
+		var l = loadGrdList();
+		var y = 0;
+		for (var i=0;i < l.length;i++) y = drawGrd(y,l[i]);
+		setScrollbar(y);
+		selectGrd(l[0]);
+		ma = new Array();
+		da = new Array();
+		ca = new Array();
+	}
+	function setModified() {
+		if (gradient != null) {
+			var g = getId(gradient);
+			var f = false;
+			for (var i=0;i < ma.length && !f;i++) f = ma[i] == g;
+			if (!f) ma[ma.length] = g;
+		}
+	}
+	function loadGradient(grdid) {
+	    var x1, y1, x2,y2,x1a,y1a,x2a,y2a,i,j;
+	    gradient = get(grdid);
+	    setFillGrd(get("grdrect"),grdid);
+	    reloadGradient();
+	}
+	
+	function loadMethod() {
+	    method = gradient.getAttributeNS(null,"spreadMethod");
+	    if (method=="pad") setMethodSpread(0);
+	    else if (method=="repeat") setMethodSpread(1);
+	    else if (method=="reflect") setMethodSpread(2);
+	    else {method = "pad";gradient.setAttributeNS(null,"spreadMethod","pad");setMethodSpread(0);} 
+	}
+	function loadVector() {
+	    setVisibility(get("gvector"),"visible");
+	    setCy(setCx(p1,getPcX1(gradient)),getPcY1(gradient));
+	    setCy(setCx(p2,getPcX2(gradient)),getPcY2(gradient));
+	    setY1(setX1(vector,getCx(p1)),getCy(p1));
+	    setY2(setX2(vector,getCx(p2)),getCy(p2));
+	    showP1();
+	    showP2();
+	}
+	function loadCircle() {
+	    setVisibility(get("gcircle"),"visible");
+	    setCy(setCx(center,getPcCx(gradient)),getPcCy(gradient));
+	    setCy(setCx(radius,getCx(center)+getPcR(gradient)),getCy(center));
+	    setCy(setCx(focal,getPcFx(gradient)),getPcFy(gradient));
+	    setR(setCy(setCx(circle,getPcCx(gradient)),getPcCy(gradient)),getPcR(gradient));
+	    showCircle();
+	    showFocal();
+	}
+	function reloadGradient() {
+	    var u = gradient.getAttribute("gradientUnits");
+	    
+	    loadMethod();
+	    if (gradient.tagName=="linearGradient") {
+		setVisibility(get("gcircle"),"hidden");
+		if ( u==null || u=="" ||u == "objectBoundingBox") loadVector() ;
+		else setVisibility(get("gvector"),"hidden");
+	    }
+	    else {
+		setVisibility(get("gvector"),"hidden");
+		if ( u==null || u=="" ||u == "objectBoundingBox") loadCircle() ;
+		else setVisibility(get("gcircle"),"hidden");
+	    }
+	    
+	    stope = new Array();
+	    for (i=0,j=0;i < gradient.childNodes.length;i++) {
+	      var v = gradient.childNodes.item(i);
+	      if (v.tagName && v.tagName=="stop") {
+	        stope[j] = v;
+		j++;
+	      }
+	    }
+	
+	    drawOffsetR();
+	    drawOffsetC();
+	    drawColorsO();
+	    showStopOffsets();
+	    showStopOpacity();
+       }
+	//--- Commons
+        function getR(v) {return svgdoc.getElementById(v);}
+	function get(v) {var e= svgdoc.getElementById(v);if (e== null) alert(v + " not found");return e;}
+        function find(v) {return svgdoc.getElementById(v);}
+	
+        function addListener(e,t,h)     {e.addEventListener(t,h,false);return e;}
+        function removeListener(e,t,h) {e.removeEventListener(t,h,false);return e;}
+	
+	function create(t) {
+		return svgdoc.createElementNS("http://www.w3.org/2000/svg",t);
+	}
+	function createTextNode(v) {
+		return svgdoc.createTextNode(v);
+	}
+	function getCx(e)   {return parseFloat(e.getAttribute("cx"));}
+	function setCx(e,v) {e.setAttribute("cx",v);return e;}
+	function getCy(e)   {return parseFloat(e.getAttribute("cy"));}
+	function setCy(e,v) {e.setAttribute("cy",v);return e;}
+	function getX1(e)   {return parseFloat(e.getAttribute("x1"));}
+	function setX1(e,v) {e.setAttribute("x1",v);return e;}
+	function getY1(e)   {return parseFloat(e.getAttribute("y1"));}
+	function setY1(e,v) {e.setAttribute("y1",v);return e;}
+	function getX2(e)   {return parseFloat(e.getAttribute("x2"));}
+	function setX2(e,v) {e.setAttribute("x2",v);return e;}
+	function getY2(e)   {return parseFloat(e.getAttribute("y2"));}
+	function setY2(e,v) {e.setAttribute("y2",v);return e;}
+	function setRx(e,v)  {e.setAttribute("rx",v);return e;}
+	function setR(e,v)   {e.setAttribute("r",v);return e;}
+	function getX(e)     {return parseFloat(e.getAttribute("x"));}
+	function getY(e)     {return parseFloat(e.getAttribute("y"));}
+	function getR(e)     {return parseFloat(e.getAttribute("r"));}
+	function setX(e,v)   {e.setAttribute("x",v);return e;}
+	function setY(e,v)   {e.setAttribute("y",v);return e;}
+	function setFx(e,v)  {e.setAttribute("fx",v);return e;}
+	function setFy(e,v)  {e.setAttribute("fy",v);return e;}
+	
+	function getWidth(e)   {return parseFloat(e.getAttribute("width"));}
+	function setWidth(e,v)  {e.setAttribute("width",v);return e;}
+	function setHeight(e,v) {e.setAttribute("height",v);return e;}
+	
+	function setId(e,v)  {e.setAttribute("id",v);return e;}
+	function getId(e)    {return e.getAttribute("id");}
+	
+	function setStyle(e,v)  {e.setAttribute("style",v);return e;}
+	function getStyle(e)    {return e.getAttribute("style");}
+	
+	function getIdNext(e)  {var id = getId(e);return id.substring(1,id.length);}
+	function getIdIndex(e) {return parseInt(getIdNext(e));}
+	
+	function removeChildren(p) {while (p.childNodes.length != 0) p.removeChild(p.childNodes.item(0));}
+	function remove(e) {e.parentNode.removeChild(e);}
+	
+	function setTranslateY(e,y) {
+		e.setAttribute("transform","translate(0,"+y+")");
+		return e;
+	}
+	
+	function getStyleAttribute(e,a) {
+		var v = getStyleMember(e,a);
+		return v == null ? e.getAttribute(a) : v;
+	}
+	function setStyleAttribute(e,a,u) {
+		var v = getStyleMember(e,a);
+		if (v != null)  setStyleMember(e,a,u);
+		else e.setAttribute(a,u);
+		return e;
+	}
+	
+	function getStyleMember(e,a) {
+		var v = getStyle(e);
+		if (v != null && v != "") {
+			var i = v.indexOf(a+":",0);
+			if (i != -1) {
+				var j = v.indexOf(":",i);
+				var k = v.indexOf(";",i);
+				if (k != -1) return v.substring(j+1,k);
+				else return v.substring(j+1,v.length);
+			}
+		}
+		return null;
+	}
+	function setStyleMember(e,a,u) {
+		var v = getStyle(e);
+		if (v != null && v != "") {
+			var i = v.indexOf(a+":",0);
+			if (i != -1) {
+				var j = v.indexOf(":",i);
+				var k = v.indexOf(";",i);
+				if (k != -1) setStyle(e,v.substring(0,j+1)+u+v.substring(k,v.length));
+				else setStyle(e,v.substring(0,j+1)+u+";");
+			}
+			else e.setAttribute("style",a+":"+u+";"+v);
+		}
+		else e.setAttribute("style",a+":"+u+";");
+	}
+	function getStyle100(e,a,d) {
+		var v = getStyleAttribute(e,a);
+		if (v == null || v=="") v = d;
+		else {
+			var i = v.indexOf("%");
+			if (i != -1) v = parseInt(v.substring(0,i));
+			else v = parseInt(parseFloat(v)*100);
+		}
+		return v;
+	}
+	
+	function get100(e,a,d) {
+		var v = e.getAttribute(a);
+		if (v == null || v=="") v = d;
+		else {
+			var i = v.indexOf("%");
+			if (i != -1) v = parseInt(v.substring(0,i));
+			else v = parseInt(parseFloat(v)*100);
+		}
+		return v;
+	}
+	function getOffset100(e)   {return get100(e,"offset",0);}
+	function setOffset100(e,v) {e.setAttribute("offset",v/100);return e;}
+	
+	function getPcX1(e) {return get100(e,"x1",0);}
+	function getPcY1(e) {return get100(e,"y1",0);}
+	function getPcX2(e) {return get100(e,"x2",100);}
+	function getPcY2(e) {return get100(e,"y2",100);}
+	
+	function getPcCx(e) {return get100(e,"cx",50);}
+	function getPcCy(e) {return get100(e,"cy",50);}
+	function getPcR(e) {return get100(e,"r",50);}
+	function getPcFx(e) {return get100(e,"fx",getPcCx(e));}
+	function getPcFy(e) {return get100(e,"fy",getPcCy(e));}
+	
+	function getStopOpacity100(e)   {return getStyle100(e,"stop-opacity",100);}
+	function setStopOpacity100(e,v) {setStyleAttribute(e,"stop-opacity",v/100);return e;}
+	function getFillOpacity100(e)      {return getStyle100(e,"fill-opacity",100);}
+	function setFillOpacity100(e,v)    {setStyleAttribute(e,"fill-opacity",v/100);return e;}
+	function getStopColor(e)            {return getStyleAttribute(e,"stop-color");}
+	function setStopColor(e,v)         {setStyleAttribute(e,"stop-color",v);return e;}
+	
+	function setFill(e,v)            {setStyleAttribute(e,"fill",v);return e;}
+	function getFill(e)              {return getStyleAttribute(e,"fill");}
+	function setFilllOpacity(e,v) {setStyleAttribute(e,"fill-opacity",v);return e;}
+	function setStroke(e,v)       {setStyleAttribute(e,"stroke",v);return e;}
+	function getStroke(e)         {return getStyleAttribute(e,"stroke");}
+	function setFillGrd(e,v)        {setStyleAttribute(e,"fill","url(#"+v+")");return e;}
+	function setStrokeGrd(e,v)       {setStyleAttribute(e,"stroke","url(#"+v+")");return e;}
+	function setStrokeLinecap(e,v) {setStyleAttribute(e,"stroke-linecap",v);return e;}
+	function setTextAnchor(e,v)    {setStyleAttribute(e,"text-anchor",v);return e;}
+	
+	function setCursor(e,v)   {setStyleAttribute(e,"cursor",v);return e;}
+	function setVisibility(e,v) {setStyleAttribute(e,"visibility",v);return e;}
+	
+	function setBBoxRect(r,t,bx,by) {
+	  var v = t.getBBox();
+	  setHeight(setWidth(setY(setX(r,v.x-bx),v.y-by),v.width+bx*2),v.height+by*2);
+	}
+	
+	function arrayToStringList(a,s) {
+		var l = a.length >= 1 ? a[0] : "";
+		for (var i=1;i < a.length;i++) l +=s+a[i];
+		return l;
+	}
+	
+	//---------- scrolllist
+	function selectGrd(v) {
+		if (glistc != null) hideGrdR(glistc);
+		glistc = get("r"+v);
+		loadGradient(v);
+		showGrdR(glistc);
+	}
+	function showGrdR(e) {
+		setStroke(e,"black");
+		setVisibility(get("t"+getIdNext(e)),"visible");
+	}
+	function hideGrdR(e) {
+		setStroke(e,"none");
+		setVisibility(get("t"+getIdNext(e)),"hidden");
+	}
+	function onGrdDown(evt) {
+		if (glistc != null) hideGrdR(glistc);
+		glistc = evt.target;
+		loadGradient(getIdNext(glistc));
+		showGrdR(glistc);
+	}
+	function onGrdOver(evt) {
+		if (evt.target != glistc && evt.target.tagName == "rect") setStroke(evt.target,"black");
+	}
+	function onGrdOut(evt) {
+		if (evt.target != glistc) setStroke(evt.target,"none");
+	}
+	function onBListDown(evt) {
+		mvY0 = evt.clientY;
+		mvY1 = getY(bglist);
+		addListener(addListener(root,"mousemove",onBListMove),"mouseup",onBListUp);
+		mv = true;
+	}
+	function scrollEnd() {
+		setBgListY(barH-hbglist);
+	}
+	function setBgListY(yb) {
+		var y =Math.max(0,Math.min(barH-hbglist,yb));
+		setY(bglist,y);
+		setTranslateY(glist,-hglist/barH*y);
+		return y;
+	}
+	function onBListMove(evt) {
+		var y = setBgListY((evt.clientY-mvY0)*fw2svg+mvY1);
+		mvY0 = evt.clientY;
+		mvY1 = y;
+	}
+	function onBListUp(evt) {
+		mv=false;
+		removeListener(removeListener(root,"mousemove",onBListMove),"mouseup",onBListUp);
+	}
+	function onBDown(evt) {
+		var y =Math.max(0,Math.min(barH-hbglist,getY(bglist)+25*barH/listH));
+		var p = -hglist/barH*y;
+		setY(bglist,y);
+		glist.setAttribute("transform","translate(0,"+p+")");
+	}
+	function onBUp(evt) {
+		var y =Math.max(0,Math.min(barH-hbglist,getY(bglist)-25*barH/listH));
+		var p = -hglist/barH*y;
+		setY(bglist,y);
+		glist.setAttribute("transform","translate(0,"+p+")");
+	}
+	//--- Radial
+	function showCircle() {
+		tcx.firstChild.data=v100(getCx(circle));
+		tcy.firstChild.data=v100(getCy(circle));
+		tr.firstChild.data=v100(getR(circle));
+	}
+	function showFocal() {
+		tfx.firstChild.data=v100(getCx(focal));
+		tfy.firstChild.data=v100(getCy(focal));
+	}
+	function onCenterDown(evt) {
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = getCx(center);
+		mvY1 = getCy(center);
+		if (gradient != null) {
+			addListener(addListener(root,"mousemove",onCenterMove),"mouseup",onCenterUp);
+			mv = true;
+		}
+	}
+	function onCenterMove(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fp1p2+mvX1));
+		var y =Math.max(0,Math.min(100,(evt.clientY-mvY0)*fw2svg/fp1p2+mvY1));
+		var r = Math.sqrt(Math.pow(x-getCx(radius),2)+Math.pow(y-getCy(radius),2));
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = x;
+		mvY1 = y;
+		setCy(setCx(center,x),y);
+		setR(setCy(setCx(circle,x),y),r);
+		setR(setCx(setCy(gradient,x/100),y/100),r/100);
+		showCircle();
+	}
+	function onCenterUp(evt) {
+		mv=false;
+		setFilllOpacity(center,vOpacity);
+		removeListener(removeListener(root,"mousemove",onCenterMove),"mouseup",onCenterUp);
+		setModified();
+	}
+	function onRadiusDown(evt) {
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = getCx(radius);
+		mvY1 = getCy(radius);
+		if (gradient != null) {
+			addListener(addListener(root,"mousemove",onRadiusMove),"mouseup",onRadiusUp);
+			mv = true;
+		}
+	}
+	function onRadiusMove(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fp1p2+mvX1));
+		var y =Math.max(0,Math.min(100,(evt.clientY-mvY0)*fw2svg/fp1p2+mvY1));
+		var r = Math.sqrt(Math.pow(x-getCx(center),2)+Math.pow(y-getCy(center),2));
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = x;
+		mvY1 = y;
+		setCy(setCx(radius,x),y);
+		setR(circle,r);
+		setR(gradient,r/100);
+		tr.firstChild.data=v100(getR(circle));
+	}
+	function onRadiusUp(evt) {
+		mv=false;
+		setFilllOpacity(radius,vOpacity);
+		removeListener(removeListener(root,"mousemove",onRadiusMove),"mouseup",onRadiusUp);
+		setModified();
+	}
+	function onFocalDown(evt) {
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = getCx(focal);
+		mvY1 = getCy(focal);
+		if (gradient != null) { 
+			addListener(addListener(root,"mousemove",onFocalMove),"mouseup",onFocalUp);
+			mv = true;
+		}
+	}
+	function onFocalMove(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fp1p2+mvX1));
+		var y =Math.max(0,Math.min(100,(evt.clientY-mvY0)*fw2svg/fp1p2+mvY1));
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = x;
+		mvY1 = y;
+		setCy(setCx(focal,x),y);
+		setFy(setFx(gradient,x/100),y/100);
+		showFocal();
+	}
+	function onFocalUp(evt) {
+		mv=false;
+		setFilllOpacity(focal,vOpacity);
+		removeListener(removeListener(root,"mousemove",onFocalMove),"mouseup",onFocalUp);
+		setModified();
+	}
+	
+	//------------ Vecteur p1-p2
+	
+	function v100(v) {
+		return v == 100 ? "100" : (  v < 10 ? "00" + Math.round(v) : "0" + Math.round(v));
+	}
+	function showP1() {
+		tx1.firstChild.data=v100(getCx(p1));
+		ty1.firstChild.data=v100(getCy(p1));
+	}
+	function showP2() {
+		tx2.firstChild.data=v100(getCx(p2));
+		ty2.firstChild.data=v100(getCy(p2));
+	}
+	function onP1P2Over(evt) {
+		setFilllOpacity(evt.target,1);
+	}
+	function onP1P2Out(evt) {
+		if (!mv) setFilllOpacity(evt.target,vOpacity);
+	}
+	
+	function onP1Down(evt) {
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = getCx(p1);
+		mvY1 = getCy(p1);
+		if (gradient != null) {
+			addListener(addListener(root,"mousemove",onP1Move),"mouseup",onP1Up);
+			mv = true;
+		}
+	}
+	function onP1Move(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fp1p2+mvX1));
+		var y =Math.max(0,Math.min(100,(evt.clientY-mvY0)*fw2svg/fp1p2+mvY1));
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = x;
+		mvY1 = y;
+		setCy(setCx(p1,x),y);
+		setY1(setX1(vector,x),y);
+		setY1(setX1(gradient,x/100),y/100);
+		showP1();
+	}
+	function onP1Up(evt) {
+		mv=false;
+		setFilllOpacity(p1,vOpacity);
+		removeListener(removeListener(root,"mousemove",onP1Move),"mouseup",onP1Up);
+		setModified();
+	}
+	function onP2Down(evt) {
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = getCx(p2);
+		mvY1 = getCy(p2);
+		if (gradient != null)  {
+			addListener(addListener(root,"mousemove",onP2Move),"mouseup",onP2Up);
+			mv = true;
+		}
+	}
+	function onP2Move(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fp1p2+mvX1));
+		var y =Math.max(0,Math.min(100,(evt.clientY-mvY0)*fw2svg/fp1p2+mvY1));
+		mvX0 = evt.clientX;
+		mvY0 = evt.clientY;
+		mvX1 = x;
+		mvY1 = y;
+		setCy(setCx(p2,x),y);
+		setY2(setX2(vector,x),y);
+		setY2(setX2(gradient,x/100),y/100);
+		showP2();
+	}
+	function onP2Up(evt) {
+		mv=false;
+		setFilllOpacity(p2,vOpacity);
+		removeListener(removeListener(root,"mousemove",onP2Move),"mouseup",onP2Up);
+		setModified();
+	}
+	
+	//--------------------------------------------------
+	
+
+	function setMethodSpread(param) {
+		var methodChoosed = get("method");
+		setCy(methodChoosed,40+param*20);
+		method = methodValue[param];
+		if (gradient != null) gradient.setAttributeNS(null,"spreadMethod",method);
+		setModified();
+
+	}
+	//------------------------------------------------------
+	
+	function showStopOffsets() {
+		var s = " ";
+		for (var i=0;i < stope.length;i++) {
+		   s += v100(getOffset100(stope[i]))+" ";
+		}
+		stopOffsets.firstChild.data=s;
+	}
+	function drawOffsetR() {
+		var x=0,p =  get("stopr");
+		removeChildren(p);
+		for (var i=0;i != stope.length;i++) {
+		    var o = getOffset100(stope[i]);
+		    setFill(setWidth(setHeight(setY(setX(p.appendChild(create("rect")),x),-4),6),o-x),getStopColor(stope[i]));
+		    x = o;
+		}
+	}
+	function drawOffsetC() {
+		var p =  get("stopc");
+		removeChildren(p);
+		for (i=0;i <stope.length;i++) {
+			setId(setRx(setHeight(setWidth(setY(setX(p.appendChild(create("rect")),getOffset100(stope[i])-2),-7),4),12),4),"i"+i);
+		}
+        }
+	
+	function onStopOver(evt) {
+		setFilllOpacity(evt.target,1);
+	}
+	function onStopOut(evt) {
+		if (!mv) setFilllOpacity(evt.target,vOpacity);
+	}
+	function onStopDown(evt) {
+		stop = evt.target;
+		stopc = stope[getIdIndex(stop)];
+		mvX0 = evt.clientX;
+		mvX1 = getX(stop)+2;
+		addListener(addListener(root,"mousemove",onStopMove),"mouseup",onStopUp);
+		mv=true;
+	}
+	function onStopMove(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fstop+mvX1));
+		mvX0 = evt.clientX;
+		mvX1 = x;
+		setX(stop,x-2);
+		setOffset100(stopc,x);
+		showStopOffsets();
+	}
+	function onStopUp(evt) {
+		mv=false;
+		setFilllOpacity(stop,vOpacity);
+		stop=null;
+		removeListener(removeListener(root,"mousemove",onStopMove),"mouseup",onStopUp);
+		orderStop();
+		drawOffsetR();
+		showStopOffsets();
+		setModified();
+		
+	}
+	function orderStop() {
+		var i,j,o=100,li = new Array(), le = new Array(),b =false;
+		for (i=0;i < stope.length;i++) {
+			le[i] = stope[i];
+			li[i] = -1;
+		}
+		for (i=0;i < le.length;i++) {
+			for (j=0;j < le.length;j++) {
+				if (le[j] != null) {
+					if (li[i] == -1 || getOffset100(le[j]) <= o) {
+						li[i] = j;
+						o = getOffset100(le[j]);
+					}
+				}
+			}
+			le[li[i]] = null;
+			if (li[i] != i) b = true;
+		}
+		if (b == true) {
+			for (i=0;i < stope.length;i++) {
+				le[i] = stope[li[i]].cloneNode(true);
+			}
+			removeChildren(gradient);
+			for (i=0;i < stope.length;i++) {
+				stope[i] = gradient.appendChild(le[i]);
+			}
+			drawOffsetC();
+			drawColorsO();
+		}
+	}
+	//-------------------------------------------------------------
+	function showStopOpacity() {
+		get("topacity").firstChild.data=v100(getStopOpacity100(stopO));
+	}
+	function showStopColor() {
+		get("tcolor").firstChild.data=getStopColor(stopO);
+	}
+	function drawColorO() {
+		setStroke(colorO,"black");
+		setX(bOpacity,getStopOpacity100(stopO)-2);
+		setStroke(get("gop"),getFill(colorO));
+		showStopOpacity();
+		showStopColor();
+	}
+	
+	function drawColorsO() {
+		var x=0,p =  get("colorsO"),w=100/stope.length;
+		removeChildren(p);
+		for (var i=0;i != stope.length;i++) {
+		    setId(setFillOpacity100(setFill(setWidth(setHeight(setY(setX(p.appendChild(create("rect")),x),-6),6),w-2),getStopColor(stope[i])),getStopOpacity100(stope[i])),"o"+i);
+		    x += w;
+		}
+		colorO = get("o0");
+		if (colorO != null) {
+			stopO=stope[0];
+			drawColorO();
+		}
+	}
+	function onOpacityRectOver(evt) {
+		setStroke(evt.target,"black");
+	}
+	function onOpacityRectOut(evt) {
+		if (evt.target != colorO) setStroke(evt.target,"none");
+	}
+	function onColorOpacityClick(evt) {
+		if (colorO != null)  setStroke(colorO,"none");
+		colorO = evt.target;
+		stopO = stope[getIdIndex(colorO)];
+		drawColorO();
+	}
+	function onOpacityDown(evt) {
+		mvX0 = evt.clientX;
+		mvX1 = getX(bOpacity)+2;
+		addListener(addListener(root,"mousemove",onOpacityMove),"mouseup",onOpacityUp);
+		mv=true;
+	}
+	function onOpacityMove(evt) {
+		var x =Math.max(0,Math.min(100,(evt.clientX-mvX0)*fw2svg/fopacity+mvX1));
+		mvX0 = evt.clientX;
+		mvX1 = x;
+		setX(bOpacity,x-2);
+		setStopOpacity100(stopO,x);
+		setFillOpacity100(colorO,x);
+		showStopOpacity();
+	}
+	function onOpacityUp(evt) {
+		mv=false;
+		setFill(bOpacity,"rgb(120,120,120)");
+		removeListener(removeListener(root,"mousemove",onOpacityMove),"mouseup",onOpacityUp);
+		setModified();
+	}
+	function onOpacityOver(evt) {
+		setFill(bOpacity,"black");
+	}
+	function onOpacityOut(evt) {
+		if (!mv) setFill(bOpacity,"rgb(120,120,120)");
+	}
+
+	function removeSelectedColor() {
+		if (colorO != null) {
+			gradient.removeChild(stope[getIdIndex(colorO)]);
+			reloadGradient();
+			setModified();
+		}
+	}
+	function setSelectedColor(v) {
+		if (colorO != null) {
+			setStopColor(stope[getIdIndex(colorO)],v);
+			setFill(colorO,v);
+			showStopColor();
+			drawOffsetR();
+			drawColorsO();
+			drawColorO();
+			setModified();
+		}
+	}
+	function addGradientStopColor() {
+		if (gradient != null && stope != null) {
+			var x = stope.length == 0 ? 50 : (100+getOffset100(stope[stope.length-1]))/2;
+			setOffset100(setStopColor(gradient.appendChild(create("stop")),"salmon"),x);
+			reloadGradient();
+			setModified();
+		}
+	}
+	//----------------------------------------------------
+	
+	
+	function onColorDelete(evt) {
+		if (color != null) {
+			gradient.removeChild(stope[getIdIndex(color)]);
+			reloadGradient();
+		}
+	}
+	function onColorAdd(evt) {
+		if (gradient != null) {
+			var x = stope.length == 0 ? 50 : (100+getOffset100(stope[stope.length-1]))/2;
+			setOffset100(setStopColor(gradient.appendChild(create("stop")),"salmon"),x);
+			reloadGradient();
+		}
+	}
+	
+	// Selected gradient
+	
+
+	function removeSelectedGradient() {
+		if (gradient != null) {
+			var g = getId(gradient);
+			var n = get("t"+g).nextSibling, p = get("r"+g).previousSibling;
+			remove(gradient);
+			gradient = null;
+			glistc = null;
+			stope=null;
+			colorO=null;
+			stopO=null;
+			remove(get("r"+g));
+			remove(get("t"+g));
+			if (n != null) selectGrd(getIdNext(n));
+			else if (p != null) selectGrd(getIdNext(p));
+			da[da.length] = g;
+		}
+	}	
+	function allocId() {
+		while (find("grdid"+lastId) != null) lastId++;
+		return "grdid"+lastId;
+	}
+	function copyGradient(e) {
+		var id = allocId();
+		setId(get("defs").appendChild(e.cloneNode(true)),id);
+		setScrollbar(drawGrd(hglist,id));
+		selectGrd(id);
+		scrollEnd();
+		ca[ca.length] = id;
+		return id;
+	}
+	function addLinearGradient() {
+		return copyGradient(get("__defaultLinear"));
+	}
+	function addRadialGradient() {
+		return copyGradient(get("__defaultRadial"));
+	}
+	function copySelectedGradient() {
+		if (gradient != null) {
+			return copyGradient(gradient);
+		}
+	}
+]]></script>
+
+        <defs id="defs">
+	
+          <marker id="arrow1" viewBox="-15 -5 20 20" refX="0" refY="0" 
+            	markerUnits="strokeWidth" markerWidth="20" markerHeight="16" 
+	        orient="auto">
+    		    <path d="M -15 -5 L 0 0 L -15 5 z" fill="black"/>
+          </marker>
+	
+	<linearGradient id="__defaultLinear" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad" gradientUnits="objectBoundingBox">
+	 <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0"/>
+	 <stop offset="100%" style="stop-color:rgb(10,10,10);stop-opacity:1"/>
+	</linearGradient>
+	<radialGradient id='__defaultRadial' spreadMethod='reflect' grdlutUnits='objectBoundingBox' cx='50%' cy='50%' r='5%' fx='50%' fy='50%'>
+		<stop id='c1' offset='5%' stop-color='white' stop-opacity='1'/>
+		<stop id='c2' offset='95%' stop-color='black' stop-opacity='1'/>
+	</radialGradient>
+
+		
+		<clipPath id='cglist' >
+		 <rect x='0' y='0' width='80' height='300' />
+		</clipPath>
+		
+        </defs>
+	
+	<rect x='0' y='0' width='550' height='350' fill='white'/>
+	
+	<g transform="translate(20,30)">
+	  <rect x="-10" y="-10" width="110" height="320" stroke="black" fill="white" rx="4" stroke-opacity="0.6"/>
+	   <rect id="r7" x="-5" y="-10" width="110" height="22" stroke="none" fill="white" rx='2'/>
+	   <text id='t7' x="4" y="-6"  font-size="16" font-weight='bold'>List</text>
+	  
+	  <g clip-path="url(#cglist)">
+	   <g id="glist" onclick="onGrdDown(evt)" onmouseover="onGrdOver(evt)" onmouseout="onGrdOut(evt)" font-size="10"/>
+	  </g>
+	  <rect x='0' y='0' width='70' height='300' stroke="black" fill="none"/>
+	  <rect x='75' y='15' width='14' height='270' stroke="black" fill="black" fill-opacity="0.1"/>
+	  <rect transform="translate(0,15)" id='bglist' onmousedown="onBListDown(evt)" x='75' y='0' width='14' height='270' stroke="black" fill="black" fill-opacity="0.3"/>
+	   <path d="M 75 11 l 7 -11 l 7 11 z" fill="black" onclick="onBUp(evt)"/>
+	   <path d="M 75 289 l 7 11 l 7 -11 z" fill="black" onclick="onBDown(evt)"/>
+	</g>
+	
+	<g font-familiy="Verdana Arial" transform="translate(100,0)" >
+	
+		 <g transform="translate(40,0)" font-size="14">
+		    <rect x="0" y="20" width="120" height="72" stroke="black" fill="white" rx="4" stroke-opacity="0.6"/>
+		    <rect id="r5" x="-5" y="-10" width="110" height="22" stroke="none" fill="white" rx='2'/>
+		    <text id='t5' x="14" y="24"  font-size="16" font-weight='bold'>Spread</text>
+		    <circle cx="12" cy="40" r="6" fill="white" stroke="black"/>
+		    <circle cx="12" cy="60" r="6" fill="white" stroke="black" />
+		    <circle cx="12" cy="80" r="6" fill="white" stroke="black" />
+		    <text x="30" y="45">pad</text>
+		    <text x="30" y="65">repeat</text>
+		    <text x="30" y="85">reflect</text>
+		    <circle id="method" cx="12" cy="80" r="4" fill="black"/>
+		    <rect onclick="setMethodSpread(0)" x="0" y="30" width="100" height="20" fill="none" pointer-events="fill"/> 
+		    <rect onclick="setMethodSpread(1)" x="0" y="50" width="100" height="20" fill="none" pointer-events="fill"/>
+		    <rect onclick="setMethodSpread(2)" x="0" y="70" width="100" height="20" fill="none" pointer-events="fill"/>
+		   
+		</g>
+	
+		<g transform="translate(180 20)">
+			<rect  x="0" y="0" width="220" height="72" stroke="black" fill="white" rx="4" stroke-opacity="0.6"/>
+			<rect id="r6" x="-5" y="-10" width="110" height="22" stroke="none" fill="white" rx='2'/>
+			<text id='t6' x="14" y="4"  font-size="16" font-weight='bold'>Gradient</text>
+			<rect id="grdrect" stroke="none"  x="10" y="10" width="200" height="54"/>
+		</g>
+	
+		<g id="gvector" transform="translate(50 130) scale(1)" font-size="12">
+			<rect x="-10" y="-18" width="120" height="178" stroke-width='1' stroke="black" fill="white" rx="4" stroke-opacity="0.6"/>
+			<rect id="r3" x="-5" y="-10" width="110" height="22" stroke="none" fill="white" rx='2'/>
+			<text id='t3' x="4" y="-14"  font-size="16" font-weight='bold'>Linear</text>
+			<!--rect x="-10" y="-10" width="120" height="120" stroke="black" fill="black" fill-opacity="0.1"/-->
+			<line id="vector" marker-end="url(#arrow1)" x1="30" y1="30" x2="60" y2="70" stroke='black' stroke-width='1'/> 
+			<g stroke="black" fill="black" fill-opacity="0.2" onmouseover="onP1P2Over(evt)" onmouseout="onP1P2Out(evt)">
+				<circle id="p1" cx="30" cy="30" r="4" fill="black" onmousedown="onP1Down(evt)"  />
+				<circle id="p2" cx="60" cy="70" r="4" fill="black" onmousedown="onP2Down(evt)"  />
+			</g>
+			<text x="-4" y="124">x1</text><text id="tx1" x="16" y="124">000</text>
+			<text x="-4" y="140">y1</text><text id="ty1" x="16" y="140">000</text>
+			<text x="50" y="124">x2</text><text id="tx2" x="70" y="124">000</text>
+			<text x="50" y="140">y2</text><text id="ty2" x="70" y="140">000</text>
+		</g>
+		<g id="gcircle" transform="translate(50 130) scale(1)" font-size="12">
+			<rect x="-10" y="-18" width="120" height="178" stroke="black" fill="white" rx="4" stroke-opacity="0.6"/>
+			<rect id="r4" x="-5" y="-10" width="110" height="22" stroke="none" fill="white" rx='2'/>
+			<text id='t4' x="4" y="-14"  font-size="16" font-weight='bold'>Radial</text>
+			<!--rect x="-10" y="-10" width="120" height="120" stroke="black" fill="black" fill-opacity="0.1"/-->
+			<circle id="circle" cx="30" cy="30" r="30" stroke='black' stroke-width='1' fill="none"/>
+			<g stroke="black" fill="black" fill-opacity="0.2" onmouseover="onP1P2Over(evt)" onmouseout="onP1P2Out(evt)">
+			<circle id="center" cx="30" cy="30" r="4" fill="black"   onmousedown="onCenterDown(evt)"  />
+			<circle id="radius" cx="60" cy="30" r="4" fill="black"  onmousedown="onRadiusDown(evt)"/>
+			<circle id="focal" cx="60" cy="30" r="4" fill="black"  onmousedown="onFocalDown(evt)"/>
+			</g>
+			<text x="0" y="124">cx</text><text id="tcx" x="20" y="124">000</text>
+			<text x="0" y="140">cy</text><text id="tcy" x="20" y="140">000</text>
+			<text x="50" y="124">fx</text><text id="tfx" x="70" y="124">000</text>
+			<text x="50" y="140">fy</text><text id="tfy" x="70" y="140">000</text>
+			<text x="0" y="156">r</text><text id="tr" x="20" y="156">000</text>
+		</g>
+	    
+	    <g transform="translate(190,140) scale(2)" font-size="6"> 
+		     <rect x="-5" y="-14" width="110" height="30" stroke-width='0.5' stroke="black" fill="white" rx="2" stroke-opacity="0.5"/>
+		    <rect id="r1" x="-5" y="-14" width="110" height="22" stroke="none" fill="white" rx='2'/>
+		    <text id="t1" x="2" y="-12"   font-size="8" font-weight='bold'>Offsets</text>
+		    <rect x="0" y="-4" width="100" height="6" stroke="none" fill="black" fill-opacity="0.1"/>
+		    <text id="stopOffsets" x="100" y="14" text-anchor='end'>x</text>
+		    <g id="stopr"/>
+		    <g id="stopc" onmousedown="onStopDown(evt)" stroke="black" stroke-opacity="0.5" fill="black" fill-opacity="0.2" onmouseover="onStopOver(evt)" onmouseout="onStopOut(evt)">
+		    </g>
+	    </g>
+    
+	     <g transform="translate(190,220) scale(2)" font-size="6"> 
+		     
+		    <rect x="-5" y="-14" width="110" height="44" stroke-width='0.5'  stroke="black" fill="white" rx="2" stroke-opacity="0.5"/>
+		    <rect id="r2" x="-5" y="-14" width="110" height="22" stroke="none" fill="white" rx='1'/>
+		    <text id="t2" x="2" y="-12"  font-size="8" font-weight='bold'>Colors</text>
+		    
+		    <g id="gop" stroke='red' stroke-width='6'>
+			    <line x1='0' y1='8' x2='10' y2='8'  stroke-opacity='0.1'/>
+			    <line x1='10' y1='8' x2='20' y2='8' stroke-opacity='0.2'/>
+			    <line x1='20' y1='8' x2='30' y2='8' stroke-opacity='0.3'/>
+			    <line x1='30' y1='8' x2='40' y2='8' stroke-opacity='0.4'/>
+			    <line x1='40' y1='8' x2='50' y2='8' stroke-opacity='0.5'/>
+			    <line x1='50' y1='8' x2='60' y2='8' stroke-opacity='0.6'/>
+			    <line x1='60' y1='8' x2='70' y2='8' stroke-opacity='0.7'/>
+			    <line x1='70' y1='8' x2='80' y2='8' stroke-opacity='0.8'/>
+			    <line x1='80' y1='8' x2='90' y2='8' stroke-opacity='0.9'/>
+			    <line x1='90' y1='8' x2='100' y2='8' stroke-opacity='1'/>
+		    </g>
+		    
+		    <rect id="bOpacity" x='-2' y='2' width='4' rx='4' height='10' stroke="black" stroke-opacity='0.5' fill="rgb(120,120,120)" onmousedown="onOpacityDown(evt)" onmouseover="onOpacityOver(evt)" onmouseout="onOpacityOut(evt)"/>
+		    <g id="colorsO" onclick="onColorOpacityClick(evt)" onmouseover="onOpacityRectOver(evt)" onmouseout="onOpacityRectOut(evt)" stroke-opacity="1"/>
+		    
+		    <text x="0" y="20">color</text><text id="tcolor" x="24" y="20">color</text>
+		    <text x="0" y="26">opacity</text><text id="topacity" x="24" y="26">000</text>
+		    
+		    
+	    </g>
+    
+	  
+    
+    </g>
+    
+</svg>

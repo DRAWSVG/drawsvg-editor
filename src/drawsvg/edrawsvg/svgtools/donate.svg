@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 30" preserveAspectRatio="xMidYMid meet"><defs id="svgEditorDefs"><text id="svgEditorTextDefs" fill="black" style="font-family: Arial; font-size: 20px; text-anchor: middle;"/><polygon id="svgEditorPolygonDefs" stroke="black" fill="khaki" style="vector-effect: non-scaling-stroke; stroke-width: 1px;"/><linearGradient gradientUnits="objectBoundingBox" id="lgrd4-green-red-blue" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="0%"><stop offset="10%" stop-color="#00cc00" stop-opacity="1"/><stop offset="30%" stop-color="#006600" stop-opacity="1"/><stop offset="70%" stop-color="#cc0000" stop-opacity="1"/><stop offset="90%" stop-color="#000099" stop-opacity="1"/></linearGradient><linearGradient gradientUnits="objectBoundingBox" id="gradient1" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="90.2%"><stop offset="0.509091" style="stop-color:peachpuff;  stop-opacity:1;"/><stop offset="100%" style="stop-color:sienna;  stop-opacity:1"/></linearGradient><line id="svgEditorLineDefs" stroke="black" style="fill: none; vector-effect: non-scaling-stroke; stroke-width: 1px;"/><g id="svgEditorGroupDefs" fill="khaki" stroke="black" style="vector-effect: non-scaling-stroke; stroke-width: 1px;"/><path id="svgEditorClosePathDefs" style="stroke: black;" stroke-width="0.2" fill="url(&quot;#grdid1&quot;)"/><linearGradient id="grdlut11" spreadMethod="pad" x1="0%" x2="0%" y1="0%" y2="100%">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:0.84;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:1"/>
+</linearGradient><linearGradient id="grdlut13" x1="0%" y1="0%" x2="100%" y2="0%" spreadMethod="pad">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:0.1;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:0.1"/>
+</linearGradient><linearGradient id="grdid1" spreadMethod="pad" x1="0%" x2="0%" y1="0%" y2="100%">
+	<stop offset="0.415" style="stop-color:palegoldenrod;  stop-opacity:0.47;"/>
+	<stop offset="0.995" style="stop-color:lightsteelblue;  stop-opacity:0.315;"/>
+</linearGradient><linearGradient grdlutTransform="rotate(90)" grdlutUnits="objectBoundingBox" id="grdlut4" spreadMethod="repeat" x1="0%" x2="15%" y1="0%" y2="5%">
+<stop id="c1" offset="5%" stop-color="#e20709" stop-opacity="0.8"/>
+<stop id="c2" offset="30%" stop-color="#9ad346" stop-opacity="1"/>
+<stop id="c3" offset="60%" stop-color="#bcd346" stop-opacity="0.8"/>
+<stop id="c4" offset="90%" stop-color="#e20709" stop-opacity="0.8"/>
+</linearGradient><linearGradient id="grdlut10" x="0%" y="100%">
+    <stop offset="0%" stop-color="olivedrab"/>
+    <stop offset="20%" stop-color="peru"/>
+    <stop offset="40%" stop-color="goldenrod"/>
+    <stop offset="60%" stop-color="firebrick"/>
+    <stop offset="80%" stop-color="thistle"/>
+    <stop offset="100%" stop-color="sandybrown"/>
+</linearGradient><linearGradient id="grdlut12" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="0%">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:1;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:1"/>
+</linearGradient><linearGradient id="grdid2" spreadMethod="pad" x1="0.82" x2="0.17" y1="0.44" y2="0.41">
+	<stop offset="0.275" style="stop-color:peachpuff;  stop-opacity:0.1;"/>
+	<stop offset="0.88" style="stop-color:rgb(255, 215, 0);  stop-opacity:0.585;"/>
+</linearGradient><linearGradient id="grdid3" spreadMethod="pad" x1="0" x2="0.83" y1="0" y2="1">
+	<stop offset="0.63" style="stop-color:rgb(240, 230, 140);  stop-opacity:0.375;"/>
+	<stop offset="100%" style="stop-color:rgb(47, 79, 79);  stop-opacity:0.165;"/>
+</linearGradient><linearGradient id="grdid4" spreadMethod="pad" x1="0.49" x2="0.48" y1="0.02" y2="0.98" gradientTransform="">
+	<stop offset="0.335" style="stop-color:rgb(245, 245, 245);  stop-opacity:0.255;"/>
+	<stop offset="100%" style="stop-color: rgb(47, 79, 79); stop-opacity: 0.302;"/>
+</linearGradient></defs><rect id="svgEditorBackground" x="0" y="0" width="80" height="30" style="stroke: none; fill: none;"/><a id="e7_hyperlink" xlink:title="" xlink:href="https://www.leetchi.com/c/drawsvg" target="_blank" transform=""><g id="e6_group"><rect x="4.800000000000001" y="5" id="e4_rectangle" style="vector-effect: non-scaling-stroke; fill-opacity: 0.4;" width="71" height="20" fill="url(&quot;#grdid4&quot;)" rx="10" stroke-width="4.0" stroke="url(&quot;#grdid4&quot;)"/><text fill="black" x="40" y="20" id="e3_texte" style="font-family: Arial; text-anchor: middle; font-style: italic; font-weight: bold;cursor:pointer;" font-size="14">Donate</text></g></a></svg>

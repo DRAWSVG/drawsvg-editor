@@ -1,0 +1,264 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 373.333 551.166" 
+	preserveAspectRatio="xMinYMin meet"
+	style="overflow: hidden; display: inline; width: 100%; height: 80%;"
+	xmlns:drawsvg="http://www.drawsvg.org"><!--width="373.333px" height="251.166px"-->
+	<!--NOTE: style for svg cannot be in a defs element, 6/6/15-->
+	
+	<defs>
+	<script type='text/ecmascript'>
+<![CDATA[
+
+]]>
+</script>
+	</defs>
+
+	<defs><!--media queries must be in a defs element-->
+		<style type="text/css">
+		<![CDATA[
+			.overlay:hover
+			{
+			opacity: 1;
+			fill:#00ff00;
+			}
+			.text {
+			 fill:#ED1C24;
+			font-family: Arial,sans-serif;
+			}
+			.cursor:hover {
+			cursor: pointer;
+			fill:#ff0000;
+			}
+			/*@media screen and (min-width: 961px) {
+			#smallscreen {
+			display: none;
+			}
+			}*/
+			@media screen and (orientation: landscape) {
+			#smallscreen {
+			display: none;
+			}
+			}
+			/*@media screen and (orientation: landscape) and (device-aspect-ratio: 1280/800) {
+			#smallscreen {
+			display: block;
+			}
+			}*/
+			@media screen and (orientation: landscape) {
+			#bigscreen {
+			width: 30%;
+			height: 80%;
+			}
+			}
+			/*@media screen and (max-width: 960px) {
+			#bigscreen {
+			display: none;
+			}
+			}*/
+			@media screen and (orientation: portrait) {
+			#bigscreen {
+			display: none;
+			}
+			}
+			@media screen and (orientation: portrait) {
+			#smallscreen {
+			width: 80%;
+			}
+			}
+			]]>
+		</style>	
+	</defs>
+	
+<script type="text/javascript" xlink:actuate="onLoad">
+		<![CDATA[
+		  function foottoend() {
+  var foottoend = window.open
+  ("http://www.xmplar.biz/pdf.html","foottoend","resizable=yes,width=700,height=500,left=100,top=100,scrollbars=yes");
+  foottoend.focus();
+  return false;
+  }
+
+  ]]>
+	</script>
+	
+	<g id="svg-pan-zoom_viewport">
+<path fill="#E7E8E9" d="M373.333,239.331c0,6.536-5.373,11.835-12,11.835H12c-6.628,0-12-5.299-12-11.835V11.835
+	C0,5.299,5.372,0,12,0h349.333c6.627,0,12,5.299,12,11.835V239.331z"/>
+<polyline fill="#74B74A" points="206.511,37.414 189.04,54.956 171.511,37.414 "/>
+<polyline fill="#74B74A" points="296.511,213.955 313.981,196.413 331.511,213.955 "/>
+<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0061" d="M337.999,25.999c0,6.627-5.438,12-12.146,12H18.146
+	c-6.708,0-12.146-5.373-12.146-12v-8c0-6.627,5.438-12,12.146-12h307.707c6.708,0,12.146,5.373,12.146,12V25.999z"/>
+	
+	
+<rect x="19.169" y="66.835" fill="#FFFFFF" stroke="#000000" width="87.238" height="116.866"/>
+<line fill="none" stroke="#000000" stroke-width="4" x1="35.508" y1="176.987" x2="95.615" y2="176.987"/>
+<text class="text" transform="matrix(1 0 0 1 26.6011 180.9795)" font-size="13">2</text>
+<rect x="8.085" y="46.373" fill="#FFFFFF" stroke="#000000" width="87.238" height="116.866"/>
+<line fill="none" stroke="#000000" stroke-width="4" x1="24.424" y1="153.525" x2="84.531" y2="153.525"/>
+<text class="text" transform="matrix(1 0 0 1 13.6011 156.9795)" font-size="13">1</text>
+<line fill="none" stroke="#939598" x1="50.999" y1="145.104" x2="13.696" y2="145.104"/>
+<rect x="144.169" y="56.835" fill="#FFFFFF" stroke="#000000" width="87.238" height="116.866"/>
+<line fill="none" stroke="#000000" stroke-width="4" x1="160.508" y1="118.987" x2="220.615" y2="118.987"/>
+<text class="text" transform="matrix(1 0 0 1 151.6011 122.9795)" font-size="13">2</text>
+<line fill="none" stroke="#000000" stroke-width="4" x1="160.424" y1="107.525" x2="220.531" y2="107.525"/>
+<text class="text" transform="matrix(1 0 0 1 150.6011 110.9795)" font-size="13">1</text>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="7" x1="107.667" y1="110.841" x2="138.438" y2="110.841"/>
+		<polygon points="137.107,101.805 142.799,110.815 137.107,119.827 137.049,119.827 137.049,101.805 		"/>
+	</g>
+</g>
+<line fill="none" stroke="#939598" x1="61.999" y1="169.104" x2="24.696" y2="169.104"/>
+<line fill="none" stroke="#000000" stroke-width="2" x1="156.924" y1="71.525" x2="217.031" y2="71.525"/>
+<line fill="none" stroke="#000000" stroke-width="2" x1="156.924" y1="79.525" x2="217.031" y2="79.525"/>
+<line fill="none" stroke="#000000" stroke-width="2" x1="156.924" y1="87.525" x2="217.031" y2="87.525"/>
+<rect x="279.169" y="45.835" fill="#FFFFFF" stroke="#000000" width="87.238" height="116.866"/>
+<line fill="none" stroke="#000000" stroke-width="4" x1="295.508" y1="71.987" x2="355.615" y2="71.987"/>
+<text class="text" transform="matrix(1 0 0 1 286.6016 75.9795)" font-size="13">2</text>
+<line fill="none" stroke="#000000" stroke-width="4" x1="295.424" y1="60.525" x2="355.531" y2="60.525"/>
+<text class="text" transform="matrix(1 0 0 1 285.6016 63.9795)" font-size="13">1</text>
+	<a xlink:href="http://www.xmplar.biz/epub.html" target="_parent">
+<rect class="overlay" x="269.169" y="78.835" fill="#FFFFFF" stroke="#ff0000" width="87.238" height="116.866"/>
+	</a>
+<line fill="none" stroke="#000000" stroke-width="2" x1="281.924" y1="93.525" x2="342.031" y2="93.525"/>
+<line fill="none" stroke="#000000" stroke-width="2" x1="281.924" y1="101.525" x2="342.031" y2="101.525"/>
+<line fill="none" stroke="#000000" stroke-width="2" x1="281.924" y1="109.525" x2="342.031" y2="109.525"/>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="7" x1="232.667" y1="110.841" x2="263.438" y2="110.841"/>
+		<polygon points="262.107,101.805 267.799,110.815 262.107,119.827 262.049,119.827 262.049,101.805 		"/>
+	</g>
+</g>
+<path fill="#FFFFFF" stroke="#000000" d="M366.999,233.499c0,6.627-5.373,12-12,12h-280.5c-6.627,0-12-5.373-12-12v-7.5
+	c0-6.627,5.373-12,12-12h280.5c6.627,0,12,5.373,12,12V233.499z"/>
+	
+
+	<a xlink:href="http://www.xmplar.biz/pdf.html">
+	<switch allowReorder="yes" onclick="return foottoend('foottoend')"  class="overlay text" transform="matrix(1 0 0 1 9.6011 30.4795)">
+		
+			<text systemLanguage="en" xml:lang='en' id="en-foot2end" 
+				font-size="24">Convert footnotes to endnotes</text>
+			
+			<text systemLanguage="de" xml:lang='de' id="de-foot2end" 
+				font-size="21">Konvertiere Fußnoten in Endnoten</text>
+				
+			<text systemLanguage="it" xml:lang='it' id="it-foot2end2"
+				font-size="21">Convertire note di note di chiusura</text>
+		
+			<text systemLanguage="af" xml:lang='af' id="af-foot2end" 
+				font-size="24">Skakel voetnote te eindnote</text>
+		
+			<text systemLanguage="fr" xml:lang='fr' id="fr-foot2end"
+				font-size="21">Convertir les notes en notes de fin</text>
+			
+	</switch>
+	</a>
+
+	<a xlink:href="http://www.xmplar.biz/web.html" target="_parent">
+	<switch allowReorder="yes" transform="matrix(1 0 0 1 67.6011 237.4795)" fill="#ED1C24" class="overlay text">
+		
+				<text systemLanguage="en" 
+				 font-size="24">Endnotes on separate page</text>
+			
+				<text systemLanguage="de" 
+				font-size="19">Setze Endnoten auf separate Seite</text>
+			
+				<text systemLanguage="it" 
+				font-size="15">Metti note di chiusura su una pagina separata</text>		
+			
+				<text systemLanguage="af" 
+				font-size="20">Sit eindnote op 'n aparte bladsy</text>
+			
+				<text systemLanguage="fr"  
+				font-size="16">Mettez les notes sur une page séparée</text>		
+	</switch>
+	</a>
+
+</g>
+
+
+
+<!--- this part is drawing independant, this code can be included by drawsvg to support multi-language documents-->
+<defs id="drawsvg-multilanguage-defs">
+<script type='text/ecmascript'>
+<![CDATA[
+function nsResolver() {
+  return 'http://www.w3.org/2000/svg'
+}
+// this function display element with xml:lang or systemLanguage equals lang, it's use a xml:lang attribute to save the language of the element
+function selectSystemLang(lang) {
+ try {
+ var a = new Array();
+ // find elements with systemLanguage
+ var i = document.evaluate("//svg:*[@systemLanguage!='' or @xml:lang!='']", document,nsResolver, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+  var n = i.iterateNext();
+  while (n) {
+      if (n.parentNode.id!="SVGSwitchLang") a.push(n);
+     n = i.iterateNext();
+  }
+  // the displayed systemLanguage value
+  var cl=SVGSwitchLang();
+  for (var i=0;i < a.length;i++) {
+    var n = a[i];
+    var v;
+    // the language of the element 
+    if (n.hasAttribute("xml:lang")) v = n.getAttribute("xml:lang");
+    else v = n.getAttribute("systemLanguage");
+    // set to displayed value if equals lang, other set it to invisible value
+    if (v == lang) n.setAttribute("systemLanguage",cl);
+    else n.setAttribute("systemLanguage",'_'+v);
+    // save lang  element value
+     if (!n.hasAttribute("xml:lang")) n.setAttribute("xml:lang",v);
+  }
+  } catch(ex) {alert("selectSystemLang("+lang+") "+ex);}
+}
+// this function identify the displayed systemLanguage 
+function SVGSwitchLang() {
+var l = 'ab,aa,af,sq,am,ar,an,hy,as,ay,az,ba,eu,bn,dz,bh,bi,br,bg,my,be,km,ca,zh,zh-Hans,zh-Hant,co,hr,cs,da,nl,en,eo,et,fo,fa,fj,fi,fr,fy,gl,gd,gv,ka,de,el,kl,gn,gu,ht,ha,he,iw,hi,hu,is,io,id,in,ia,ie,iu,ik,ga,it,ja,jv,kn,ks,kk,rw,ky,rn,ko,ku,lo,la,lv,li,ln,lt,mk,mg,ms,ml,mt,mi,mr,mo,mn,na,ne,no,oc,or,om,ps,pl,pt,pa,qu,rm,ro,ru,sm,sg,sa,sr,sh,st,tn,sn,ii,sd,si,ss,sk,sl,so,es,su,sw,sv,tl,tg,ta,tt,te,th,bo,ti,to,ts,tr,tk,tw,ug,uk,ur,uz,vi,vo,wa,cy,wo,xh,yi,ji,yo,zu'.split(',');
+var s = document.getElementById('SVGSwitchLang');
+var x = parseInt(s.getBBox().x,10);
+//alert("x="+s.getBBox().x+" "+x+" "+l[x]);
+if (x >=0 && x < l.length) return l[x];
+else throw "SVGSwitchLang: unexpected value '"+x+"'";
+};
+]]>
+</script>
+</defs>
+<switch id='SVGSwitchLang' allowReorder="yes" style='stroke:none;fill:none;'><rect systemLanguage='ab' x='0' y='0' width='10' height='10'/><rect systemLanguage='aa' x='1' y='0' width='10' height='10'/><rect systemLanguage='af' x='2' y='0' width='10' height='10'/><rect systemLanguage='sq' x='3' y='0' width='10' height='10'/><rect systemLanguage='am' x='4' y='0' width='10' height='10'/><rect systemLanguage='ar' x='5' y='0' width='10' height='10'/><rect systemLanguage='an' x='6' y='0' width='10' height='10'/><rect systemLanguage='hy' x='7' y='0' width='10' height='10'/><rect systemLanguage='as' x='8' y='0' width='10' height='10'/><rect systemLanguage='ay' x='9' y='0' width='10' height='10'/><rect systemLanguage='az' x='10' y='0' width='10' height='10'/><rect systemLanguage='ba' x='11' y='0' width='10' height='10'/><rect systemLanguage='eu' x='12' y='0' width='10' height='10'/><rect systemLanguage='bn' x='13' y='0' width='10' height='10'/><rect systemLanguage='dz' x='14' y='0' width='10' height='10'/><rect systemLanguage='bh' x='15' y='0' width='10' height='10'/><rect systemLanguage='bi' x='16' y='0' width='10' height='10'/><rect systemLanguage='br' x='17' y='0' width='10' height='10'/><rect systemLanguage='bg' x='18' y='0' width='10' height='10'/><rect systemLanguage='my' x='19' y='0' width='10' height='10'/><rect systemLanguage='be' x='20' y='0' width='10' height='10'/><rect systemLanguage='km' x='21' y='0' width='10' height='10'/><rect systemLanguage='ca' x='22' y='0' width='10' height='10'/><rect systemLanguage='zh' x='23' y='0' width='10' height='10'/><rect systemLanguage='zh-Hans' x='24' y='0' width='10' height='10'/><rect systemLanguage='zh-Hant' x='25' y='0' width='10' height='10'/><rect systemLanguage='co' x='26' y='0' width='10' height='10'/><rect systemLanguage='hr' x='27' y='0' width='10' height='10'/><rect systemLanguage='cs' x='28' y='0' width='10' height='10'/><rect systemLanguage='da' x='29' y='0' width='10' height='10'/><rect systemLanguage='nl' x='30' y='0' width='10' height='10'/><rect systemLanguage='en' x='31' y='0' width='10' height='10'/><rect systemLanguage='eo' x='32' y='0' width='10' height='10'/><rect systemLanguage='et' x='33' y='0' width='10' height='10'/><rect systemLanguage='fo' x='34' y='0' width='10' height='10'/><rect systemLanguage='fa' x='35' y='0' width='10' height='10'/><rect systemLanguage='fj' x='36' y='0' width='10' height='10'/><rect systemLanguage='fi' x='37' y='0' width='10' height='10'/><rect systemLanguage='fr' x='38' y='0' width='10' height='10'/><rect systemLanguage='fy' x='39' y='0' width='10' height='10'/><rect systemLanguage='gl' x='40' y='0' width='10' height='10'/><rect systemLanguage='gd' x='41' y='0' width='10' height='10'/><rect systemLanguage='gv' x='42' y='0' width='10' height='10'/><rect systemLanguage='ka' x='43' y='0' width='10' height='10'/><rect systemLanguage='de' x='44' y='0' width='10' height='10'/><rect systemLanguage='el' x='45' y='0' width='10' height='10'/><rect systemLanguage='kl' x='46' y='0' width='10' height='10'/><rect systemLanguage='gn' x='47' y='0' width='10' height='10'/><rect systemLanguage='gu' x='48' y='0' width='10' height='10'/><rect systemLanguage='ht' x='49' y='0' width='10' height='10'/><rect systemLanguage='ha' x='50' y='0' width='10' height='10'/><rect systemLanguage='he' x='51' y='0' width='10' height='10'/><rect systemLanguage='iw' x='52' y='0' width='10' height='10'/><rect systemLanguage='hi' x='53' y='0' width='10' height='10'/><rect systemLanguage='hu' x='54' y='0' width='10' height='10'/><rect systemLanguage='is' x='55' y='0' width='10' height='10'/><rect systemLanguage='io' x='56' y='0' width='10' height='10'/><rect systemLanguage='id' x='57' y='0' width='10' height='10'/><rect systemLanguage='in' x='58' y='0' width='10' height='10'/><rect systemLanguage='ia' x='59' y='0' width='10' height='10'/><rect systemLanguage='ie' x='60' y='0' width='10' height='10'/><rect systemLanguage='iu' x='61' y='0' width='10' height='10'/><rect systemLanguage='ik' x='62' y='0' width='10' height='10'/><rect systemLanguage='ga' x='63' y='0' width='10' height='10'/><rect systemLanguage='it' x='64' y='0' width='10' height='10'/><rect systemLanguage='ja' x='65' y='0' width='10' height='10'/><rect systemLanguage='jv' x='66' y='0' width='10' height='10'/><rect systemLanguage='kn' x='67' y='0' width='10' height='10'/><rect systemLanguage='ks' x='68' y='0' width='10' height='10'/><rect systemLanguage='kk' x='69' y='0' width='10' height='10'/><rect systemLanguage='rw' x='70' y='0' width='10' height='10'/><rect systemLanguage='ky' x='71' y='0' width='10' height='10'/><rect systemLanguage='rn' x='72' y='0' width='10' height='10'/><rect systemLanguage='ko' x='73' y='0' width='10' height='10'/><rect systemLanguage='ku' x='74' y='0' width='10' height='10'/><rect systemLanguage='lo' x='75' y='0' width='10' height='10'/><rect systemLanguage='la' x='76' y='0' width='10' height='10'/><rect systemLanguage='lv' x='77' y='0' width='10' height='10'/><rect systemLanguage='li' x='78' y='0' width='10' height='10'/><rect systemLanguage='ln' x='79' y='0' width='10' height='10'/><rect systemLanguage='lt' x='80' y='0' width='10' height='10'/><rect systemLanguage='mk' x='81' y='0' width='10' height='10'/><rect systemLanguage='mg' x='82' y='0' width='10' height='10'/><rect systemLanguage='ms' x='83' y='0' width='10' height='10'/><rect systemLanguage='ml' x='84' y='0' width='10' height='10'/><rect systemLanguage='mt' x='85' y='0' width='10' height='10'/><rect systemLanguage='mi' x='86' y='0' width='10' height='10'/><rect systemLanguage='mr' x='87' y='0' width='10' height='10'/><rect systemLanguage='mo' x='88' y='0' width='10' height='10'/><rect systemLanguage='mn' x='89' y='0' width='10' height='10'/><rect systemLanguage='na' x='90' y='0' width='10' height='10'/><rect systemLanguage='ne' x='91' y='0' width='10' height='10'/><rect systemLanguage='no' x='92' y='0' width='10' height='10'/><rect systemLanguage='oc' x='93' y='0' width='10' height='10'/><rect systemLanguage='or' x='94' y='0' width='10' height='10'/><rect systemLanguage='om' x='95' y='0' width='10' height='10'/><rect systemLanguage='ps' x='96' y='0' width='10' height='10'/><rect systemLanguage='pl' x='97' y='0' width='10' height='10'/><rect systemLanguage='pt' x='98' y='0' width='10' height='10'/><rect systemLanguage='pa' x='99' y='0' width='10' height='10'/><rect systemLanguage='qu' x='100' y='0' width='10' height='10'/><rect systemLanguage='rm' x='101' y='0' width='10' height='10'/><rect systemLanguage='ro' x='102' y='0' width='10' height='10'/><rect systemLanguage='ru' x='103' y='0' width='10' height='10'/><rect systemLanguage='sm' x='104' y='0' width='10' height='10'/><rect systemLanguage='sg' x='105' y='0' width='10' height='10'/><rect systemLanguage='sa' x='106' y='0' width='10' height='10'/><rect systemLanguage='sr' x='107' y='0' width='10' height='10'/><rect systemLanguage='sh' x='108' y='0' width='10' height='10'/><rect systemLanguage='st' x='109' y='0' width='10' height='10'/><rect systemLanguage='tn' x='110' y='0' width='10' height='10'/><rect systemLanguage='sn' x='111' y='0' width='10' height='10'/><rect systemLanguage='ii' x='112' y='0' width='10' height='10'/><rect systemLanguage='sd' x='113' y='0' width='10' height='10'/><rect systemLanguage='si' x='114' y='0' width='10' height='10'/><rect systemLanguage='ss' x='115' y='0' width='10' height='10'/><rect systemLanguage='sk' x='116' y='0' width='10' height='10'/><rect systemLanguage='sl' x='117' y='0' width='10' height='10'/><rect systemLanguage='so' x='118' y='0' width='10' height='10'/><rect systemLanguage='es' x='119' y='0' width='10' height='10'/><rect systemLanguage='su' x='120' y='0' width='10' height='10'/><rect systemLanguage='sw' x='121' y='0' width='10' height='10'/><rect systemLanguage='sv' x='122' y='0' width='10' height='10'/><rect systemLanguage='tl' x='123' y='0' width='10' height='10'/><rect systemLanguage='tg' x='124' y='0' width='10' height='10'/><rect systemLanguage='ta' x='125' y='0' width='10' height='10'/><rect systemLanguage='tt' x='126' y='0' width='10' height='10'/><rect systemLanguage='te' x='127' y='0' width='10' height='10'/><rect systemLanguage='th' x='128' y='0' width='10' height='10'/><rect systemLanguage='bo' x='129' y='0' width='10' height='10'/><rect systemLanguage='ti' x='130' y='0' width='10' height='10'/><rect systemLanguage='to' x='131' y='0' width='10' height='10'/><rect systemLanguage='ts' x='132' y='0' width='10' height='10'/><rect systemLanguage='tr' x='133' y='0' width='10' height='10'/><rect systemLanguage='tk' x='134' y='0' width='10' height='10'/><rect systemLanguage='tw' x='135' y='0' width='10' height='10'/><rect systemLanguage='ug' x='136' y='0' width='10' height='10'/><rect systemLanguage='uk' x='137' y='0' width='10' height='10'/><rect systemLanguage='ur' x='138' y='0' width='10' height='10'/><rect systemLanguage='uz' x='139' y='0' width='10' height='10'/><rect systemLanguage='vi' x='140' y='0' width='10' height='10'/><rect systemLanguage='vo' x='141' y='0' width='10' height='10'/><rect systemLanguage='wa' x='142' y='0' width='10' height='10'/><rect systemLanguage='cy' x='143' y='0' width='10' height='10'/><rect systemLanguage='wo' x='144' y='0' width='10' height='10'/><rect systemLanguage='xh' x='145' y='0' width='10' height='10'/><rect systemLanguage='yi' x='146' y='0' width='10' height='10'/><rect systemLanguage='ji' x='147' y='0' width='10' height='10'/><rect systemLanguage='yo' x='148' y='0' width='10' height='10'/><rect systemLanguage='zu' x='149' y='0' width='10' height='10'/></switch> 
+
+<!-- select language menu, can be showned only on smallscreen-->
+<g id="smallscreen">
+	<g id="languageSelectors">
+	<!--texts in here:-->
+	<text onclick="languageSelectors.select('de');" transform="translate(10,300)" id="de_selector" class="text cursor" visibility="visible" font-size="16">Deutsch</text>
+	<text onclick="languageSelectors.select('en')" transform="translate(85,300)" id="en_selector" class="text cursor" visibility="visible" font-size="16">English</text>
+	<text onclick="languageSelectors.select('fr')" transform="translate(155,300)" id="fr_selector" class="text cursor" visibility="visible" font-size="16">français</text>
+	<text onclick="languageSelectors.select('it')" transform="translate(235,300)" class="text cursor" id="it_selector" visibility="visible" font-size="16">Italiano</text>
+	<text onclick="languageSelectors.select('af')" transform="translate(305,300)" class="text cursor" visibility="visible" id="af_selector" font-size="16">Afrikaans</text>
+	</g>
+	<defs>
+	<script type="text/javascript" xlink:actuate="onLoad"><![CDATA[
+	var languageSelectors = {
+		highlight : function(lang) {
+			var g = document.getElementById("languageSelectors");
+			var id=lang+"_selector";
+			for (var n=g.firstChild;n!=null;n=n.nextSibling) {
+				if (n.tagName && n.tagName=="text") {
+					if (n.id==id) n.style.fill="#000000";
+					else n.style.fill="#b8b8b8";
+				}
+			}
+		},
+		select : function(lang) {
+			try {
+			selectSystemLang(lang);
+			languageSelectors.highlight(lang);
+			} catch(ex) {alert("select("+lang+") exception "+ex);}
+		}
+	};
+	// display current language
+	languageSelectors.highlight(SVGSwitchLang());
+	]]></script>
+	</defs>
+</g>
+</svg>

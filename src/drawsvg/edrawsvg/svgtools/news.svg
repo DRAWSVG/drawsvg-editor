@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="178.961 98.473 181.324 86.297" preserveAspectRatio="xMidYMid meet" zoomAndPan="disable"><defs id="svgEditorDefs"><path id="svgEditorClosePathDefs" style="stroke: black;" stroke-width="0.2" fill="url(&quot;#grdid1&quot;)"/><linearGradient id="grdlut11" spreadMethod="pad" x1="0%" x2="0%" y1="0%" y2="100%">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:0.84;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:1"/>
+</linearGradient><linearGradient id="grdlut13" x1="0%" y1="0%" x2="100%" y2="0%" spreadMethod="pad">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:0.1;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:0.1"/>
+</linearGradient><linearGradient id="grdid1" spreadMethod="pad" x1="0%" x2="0%" y1="0%" y2="100%">
+	<stop offset="0.415" style="stop-color:palegoldenrod;  stop-opacity:0.47;"/>
+	<stop offset="0.995" style="stop-color:lightsteelblue;  stop-opacity:0.315;"/>
+</linearGradient><text id="svgEditorTextDefs" style="fill: black; font-family: sans-serif; font-size: 28px; font-weight: bold; font-style: oblique; text-decoration: underline; text-anchor: middle;"/><linearGradient grdlutTransform="rotate(90)" grdlutUnits="objectBoundingBox" id="grdlut4" spreadMethod="repeat" x1="0%" x2="15%" y1="0%" y2="5%">
+<stop id="c1" offset="5%" stop-color="#e20709" stop-opacity="0.8"/>
+<stop id="c2" offset="30%" stop-color="#9ad346" stop-opacity="1"/>
+<stop id="c3" offset="60%" stop-color="#bcd346" stop-opacity="0.8"/>
+<stop id="c4" offset="90%" stop-color="#e20709" stop-opacity="0.8"/>
+</linearGradient><linearGradient id="grdlut10" x="0%" y="100%">
+    <stop offset="0%" stop-color="olivedrab"/>
+    <stop offset="20%" stop-color="peru"/>
+    <stop offset="40%" stop-color="goldenrod"/>
+    <stop offset="60%" stop-color="firebrick"/>
+    <stop offset="80%" stop-color="thistle"/>
+    <stop offset="100%" stop-color="sandybrown"/>
+</linearGradient><linearGradient id="grdlut12" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="0%">
+	<stop offset="0%" style="stop-color:peachpuff;  stop-opacity:1;"/>
+	<stop offset="100%" style="stop-color:sienna;  stop-opacity:1"/>
+</linearGradient></defs><path class="tSiennaShape1" d="M-4 3 v-6 h8 v6 h-4 l-2 1 l-1 -1z" style="" id="e1_shape" transform="matrix(20.75, 0, 0, 10.7755, 270, 137.112)" stroke-width="0.2" fill="url(&quot;#grdid1&quot;)" stroke="url(&quot;#grdlut11&quot;)"/><text style="fill: black; font-family: sans-serif; font-size: 28px; font-weight: bold; font-style: oblique; text-anchor: middle;" x="273" y="146" id="e2_texte">N E W S</text></svg>

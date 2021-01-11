@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48" width="48px" height="48px" ><defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="black"/><stop offset="100%" stop-color="white"/></linearGradient><polygon id="svgEditorIconDefs" style="fill:rosybrown;"/><polygon id="svgEditorShapeDefs" style="fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px;"/><linearGradient gradientUnits="objectBoundingBox" id="gradient1" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="0%"><stop offset="0" stop-color="navy" style="stop-opacity: 0.926;"/><stop offset="0.503636" stop-color="mediumblue" style="stop-opacity: 0.353;"/><stop style="stop-color: navy; stop-opacity: 0.756;" offset="1"/></linearGradient></defs>
+    <g fill="#6495ED">
+        <rect x="40" y="34" width="4" height="10" transform="matrix(1 0 0 0.727473 0 12.2819)"/>
+        <rect x="34" y="29" width="4" height="15" transform="matrix(1 0 0 0.60082 0 18.0367)"/>
+        <rect x="28" y="33" width="4" height="11"/>
+        <rect x="22" y="25" width="4" height="19" transform="matrix(1 0 0 0.687066 0 14.1029)"/>
+        <rect x="16" y="28" width="4" height="16"/>
+        <rect x="10" y="24" width="4" height="20"/>
+        <rect x="4" y="19" width="4" height="25"/>
+    </g>
+<path d="M3.75,-1.875l-1.25,-1.875v1.25h-1.25c-2.5,0,-1.25,3.75,-3.75,3.75h-1.25v1.25h1.25c2.5,0,1.25,-3.75,3.75,-3.75h1.25v1.25Z" style="fill:url(#gradient1); stroke:none; vector-effect:non-scaling-stroke;stroke-width:1px;" id="e3_shape" transform="matrix(5.6866 1.08139 0.830838 -3.08514 25.6793 16.1251)"/></svg>

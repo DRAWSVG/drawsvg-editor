@@ -1,0 +1,7 @@
+{
+	"imageDefaultURL":"samples/png/joconde.png",
+	"defaultFillColor" : "rosybrown",
+	"defaultShapeStrokeWidth":"1px",
+	"defaultAreaStrokeWidth" : "1px",
+	"defaultContourStrokeWidth" : "1px"
+}

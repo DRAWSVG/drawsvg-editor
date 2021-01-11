@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="100%" width="100%" viewBox="0 0 100 100" 
+ preserveAspectRatio="xMidYMid slice" zoomAndPan="disable"
+ onload='if (window.parent.svgViewerNotifyOnLoad) window.parent.svgViewerNotifyOnLoad(evt,window);'>
+ <rect style='fill:white;stroke:black' x='0' y='0' width='100' height='100'/>
+ <text style="font-family:Verdana,Arial;fill:black;font-size:10;" x='0' y='10'>Svg</text>
+ 
+</svg>
+

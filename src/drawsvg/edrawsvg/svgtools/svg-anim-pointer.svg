@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+	xmlns:svg="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet" zoomAndPan="disable">
+<!-- animation replay -->
+<g id="anim-group">
+<defs>
+<filter filterUnits="objectBoundingBox" height="120%" id="FilterOffset3" primitiveUnits="objectBoundingBox" width="120%" x="-10%" y="-10%">
+<feOffset dx="0.02" dy="0.02" in="SourceGraphic" result="offOut"/>
+<feColorMatrix in="offOut" result="matrixOut" type="matrix" values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"/>
+<feGaussianBlur in="matrixOut" result="blurOut" stdDeviation="0.05"/>
+<feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+</filter>
+<!-- style pour le message d'une etape -->
+<style type="text/css"><![CDATA[
+	
+	.banniere path{
+		stroke:gray;
+		stroke-width:2px;
+		stroke-linejoin: round;
+		fill: lavender;
+		cursor:pointer;
+		filter: url(#FilterOffset3);
+		transition: fill .3s ease-out;
+	}
+	.banniere path:hover {
+		fill:whitesmoke;
+	}
+	.banniere text {
+		font-family:sans-serif,serif,monospace; 
+		font-style: normal; 
+		font-variant: normal;
+		fill:black;
+		pointer-events:none;
+		font-size:14pt;
+	}
+	
+  ]]></style>
+<!-- scale 20/480 -->
+<g id="pointerUp" transform="scale(0.04)">
+	<!-- box 0 0 480 512 translate pour placer l'origine sur l'index-->
+	<circle cx="0" cy="0" r="100" id="pointer-spot" style="fill:none;"/>
+	<path transform="translate(-180,0)" d="M 160.00,64.00L 160.00,237.904 C 119.545,226.676, 109.704,221.00, 67.00,221.00c-36.944,0.00-67.00,30.056-67.00,67.00c0.00,36.943 30.056,67.00 67.00,67.00 c 51.986,0.00 75.975,19.361 102.855,57.545c 0.798,1.134 1.581,2.289 2.355,3.455L 128.00,416.00 L 128.00,512.00 l 320.00,0.00 l 0.00-96.00 l-28.502,0.00 c 2.151-31.831, 11.096-40.56, 22.042-51.223c 8.445-8.226, 18.956-18.464, 26.638-37.015C 476.243,308.285, 480.00,282.939, 480.00,248.00l 0.00-24.00 l 0.00-8.49 c 0.00-30.969, -25.634-56.163, -57.143-56.163c-5.235,0.00-10.438,0.712-15.45,2.095c -10.498-9.855, -24.501-15.482, -39.407-15.482 c-5.234,0.00-10.438,0.712-15.449,2.095c -10.499-9.855, -24.503-15.482, -39.408-15.482c-9.018,0.00-17.55,2.071-25.143,5.744L 288.00,64.00 c 0.00-35.347, -28.653-64.00, -64.00-64.00C 188.654,0.00, 160.00,28.653, 160.00,64.00z M 416.00,464.00c0.00,8.836-7.163,16.00-16.00,16.00s -16.00-7.164, -16.00-16.00s 7.163-16.00, 16.00-16.00 S 416.00,455.164, 416.00,464.00z M 256.00,67.00L 256.00,191.734 L 256.00,195.00 l 32.00,0.00 l 0.00-3.266 c 0.00-13.323, 11.279-24.163, 25.143-24.163c 8.685,0.00 16.645,4.234 21.293,11.327 l 8.122,12.394l 12.979-7.149c 3.781-2.083, 8.091-3.184, 12.463-3.184c 8.685,0.00 16.644,4.234 21.291,11.326l 8.122,12.395l 12.98-7.149 c 3.781-2.083, 8.091-3.184, 12.464-3.184c 13.863,0.00 25.143,10.84 25.143,24.163L 448.00,227.00 l0.00,24.00 c0.00,63.281-19.103,76.044-32.975,89.556 c-14.16,13.794-29.992,29.245-33.364,75.444L 214.474,416.00 c -4.132-7.878, -8.632-15.35, -13.545-22.329C 167.00,345.475, 131.156,320.00, 67.00,320.00 c-15.991,0.00, -29.00-15.01, -29.00-31.00s 13.009-30.00, 29.00-30.00c 42.83,0.00 52.706,6.207 93.00,18.48c 11.371,3.062 22.635,5.961 31.667,7.938L 192.00,67.00 c 0.00-17.645, 14.355-32.00, 32.00-32.00C 241.645,35.00, 256.00,49.355, 256.00,67.00z" style="fill:black;stroke:none;"/>
+</g>
+</defs>
+<g>
+<circle cx="0" cy="0" id="anim-spot" style="fill:navy;visibility:hidden;">
+<animate id="anim-spot-r" attributeName="r" attributeType="XML" begin="indefinite" fill="freeze" from="0" to="10" dur="0.4s"/>
+<animate id="anim-spot-o" attributeName="fill-opacity" attributeType="XML" begin="indefinite" fill="freeze" from="1" to="0" dur="0.4s"/>
+</circle>
+<use  id="anim-cursor" xlink:href="#pointerUp" x="0" y="0" style="visibility:hidden;"/>
+</g>
+</g>
+</svg>

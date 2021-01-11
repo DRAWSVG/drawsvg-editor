@@ -1,0 +1,581 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="178" width="294" viewBox="0 0 280 170" preserveAspectRatio="xMidYMid meet"
+ onload='init(evt)'>
+ 
+ <script type="text/ecmascript"><![CDATA[
+ // API externe
+ top.rgbChooser = {
+	   getHexa : function() {return rgb(rvC,vvC,bvC);},
+	   get : function() {return "rgb("+rvC+","+vvC+","+bvC+")";},
+	   set : setColor,
+	   setHexa : function(v) {setColor(HexToR(v),HexToG(v),HexToB(v));}
+	 };
+
+ var svgdoc,r,v,b,w,h,root,rv,rvr,vv,vvr,bv,bvr,z,n,fz,tz;
+ // facteur wsvg/wpix
+ var f = 280./294.;
+ var eX0 = 10/f;
+ var x0,x1;
+ var rvC = 0, vvC = 0, bvC = 0;
+ var ar = new Array(), av = new Array(), ab = new Array();
+ // texte saisi
+ var tv="";
+ var tvc=0;
+ function init(evt)
+{
+        var i;
+	root=evt.target;
+	svgdoc=evt.target.ownerDocument;
+	z = svgdoc.getElementById("color");
+	fz = svgdoc.getElementById("fcolor");
+	tz = svgdoc.getElementById("tcolor");
+	n = svgdoc.getElementById("n");
+	r = svgdoc.getElementById("r");
+        v = svgdoc.getElementById("v");
+	b = svgdoc.getElementById("b");
+	rv= svgdoc.getElementById("rv");
+	rvr= svgdoc.getElementById("rvr");
+	vv= svgdoc.getElementById("vv");
+	vvr= svgdoc.getElementById("vvr");
+	bv= svgdoc.getElementById("bv");
+	bvr= svgdoc.getElementById("bvr");
+	for (i=0;i < 17;i++) {
+         ar[i] = svgdoc.getElementById("r"+i);
+	 av[i] = svgdoc.getElementById("v"+i);
+	 ab[i] = svgdoc.getElementById("b"+i);
+	 }
+	//window.parent.alert("evt="+evt+ " root="+root);
+	//window.parent.alert("evt="+evt+ " top="+top.rgbChooser.getHexa());
+	setTextRect(rvr,rv);
+	setTextRect(vvr,vv);
+	setTextRect(bvr,bv);
+	setStyleOut(r);
+	
+	addRHandlers();
+	addVHandlers();
+	addBHandlers();
+	
+	
+ 
+	// notification
+	if (parent.svgViewerNotifyOnLoad) parent.svgViewerNotifyOnLoad(evt);
+}
+function addRHandlers() {
+  var i;
+  for (i=0;i < 17;i++) {
+     ar[i].addEventListener("click",onRClick,false);
+   }
+   r.addEventListener("mousedown",onRDown,false);
+   r.addEventListener("mouseout",onROut,false);
+   r.addEventListener("mouseover",onROver,false);
+   rvr.addEventListener("click",onRvrClick,false);
+   rvr.addEventListener("mouseout",onRvrOut,false);
+   rvr.addEventListener("mouseover",onRvrOver,false);
+   
+}
+function addVHandlers() {
+  var i;
+  for (i=0;i < 17;i++) {
+     av[i].addEventListener("click",onVClick,false);
+   }
+   v.addEventListener("mousedown",onVDown,false);
+   v.addEventListener("mouseout",onVOut,false);
+   v.addEventListener("mouseover",onVOver,false);
+   vvr.addEventListener("click",onVvrClick,false);
+   vvr.addEventListener("mouseout",onVvrOut,false);
+   vvr.addEventListener("mouseover",onVvrOver,false);
+   
+}
+function addBHandlers() {
+  var i;
+  for (i=0;i < 17;i++) {
+     ab[i].addEventListener("click",onBClick,false);
+   }
+   b.addEventListener("mousedown",onBDown,false);
+   b.addEventListener("mouseout",onBOut,false);
+   b.addEventListener("mouseover",onBOver,false);
+   bvr.addEventListener("click",onBvrClick,false);
+   bvr.addEventListener("mouseout",onBvrOut,false);
+   bvr.addEventListener("mouseover",onBvrOver,false);
+   
+}
+
+
+//------- events sur rectangle rvr de saisie de la valeur R
+
+function onRvrClick(evt) {
+   tv="";
+   root.addEventListener("keypress",onRvrKey,false);
+   setStyleRvKeypress(rvr);
+   rv.firstChild.data = tv;
+}
+
+function onRvrKey(evt) {
+  if (inputV(evt,r,rv)) {
+     rvC = tvc;
+     update();
+  }
+}
+function onRvrOut(evt) {
+  setStyleRvOut(rvr);
+  root.removeEventListener("keypress",onRvrKey,false);
+  setData(rv.firstChild,rvC);
+}
+function onRvrOver(evt) {
+  setStyleRvOver(rvr);
+}
+
+//----------- events sur rectangle r de translation R
+
+function onROut(evt) {
+  setStyleOut(r);
+}
+function onROver(evt) {
+  setStyleOver(r);
+}
+function onRClick(evt) {
+  rvC = setScrollClickX(evt,r);
+  setData(rv.firstChild,rvC);
+  updateV();
+  updateB();
+  updateColor();
+}
+
+function onRDown(evt) {
+  setStyleFocus(r);
+  x0=evt.clientX;
+  x1 = getScrollX(r);
+  root.addEventListener("mousemove",onRMove,false);
+  root.addEventListener("mouseup",onRUp,false);
+  setStyleFocus(r);
+}
+
+function onRUp(evt) {
+  root.removeEventListener("mousemove",onRMove,false);
+  root.removeEventListener("mouseup",onRUp,false);
+  setStyleOut(r);
+  updateV();
+  updateB();
+  updateColor();
+}
+function onRMove(evt) {
+ rvC = setScrollMoveX(evt,r);
+ setData(rv.firstChild,rvC);
+ updateV();
+ updateB();
+ updateColor();
+}
+
+//------- events sur rectangle vv de saisie de la valeur V
+
+function onVvrClick(evt) {
+   tv="";
+   root.addEventListener("keypress",onVvrKey,false);
+   setStyleRvKeypress(vvr);
+   vv.firstChild.data = tv;
+}
+
+function onVvrKey(evt) {
+  if (inputV(evt,v,vv)) {
+     vvC = tvc;
+     update();
+  }
+}
+function onVvrOut(evt) {
+  setStyleRvOut(vvr);
+  root.removeEventListener("keypress",onVvrKey,false);
+  setData(vv.firstChild,vvC);
+}
+function onVvrOver(evt) {
+  setStyleRvOver(vvr);
+}
+
+
+//----------- events sur rectangle v de translation V
+
+function onVOut(evt) {
+  setStyleOut(v);
+}
+function onVOver(evt) {
+  setStyleOver(v);
+}
+function onVClick(evt) {
+  vvC = setScrollClickX(evt,v);
+  setData(vv.firstChild,vvC);
+  updateR();
+  updateB();
+  updateColor();
+}
+function onVDown(evt) {
+  setStyleFocus(v);
+  x0=evt.clientX;
+  x1 = getScrollX(v);
+  root.addEventListener("mousemove",onVMove,false);
+  root.addEventListener("mouseup",onVUp,false);
+  setStyleFocus(v);
+}
+function onVUp(evt) {
+  root.removeEventListener("mousemove",onVMove,false);
+  root.removeEventListener("mouseup",onVUp,false);
+  setStyleOut(v);
+  updateR();
+  updateB();
+  updateColor();
+}
+function onVMove(evt) {
+ vvC = setScrollMoveX(evt,v);
+ setData(vv.firstChild,vvC);
+ updateR();
+ updateB();
+ updateColor();
+}
+
+
+//------- events sur rectangle bvr de saisie de la valeur B
+
+function onBvrClick(evt) {
+   tv="";
+   root.addEventListener("keypress",onBvrKey,false);
+   setStyleRvKeypress(bvr);
+   bv.firstChild.data = tv;
+}
+
+function onBvrKey(evt) {
+  if (inputV(evt,b,bv)) {
+     bvC = tvc;
+     update();
+  }
+}
+function onBvrOut(evt) {
+  setStyleRvOut(bvr);
+  root.removeEventListener("keypress",onBvrKey,false);
+  setData(bv.firstChild,bvC);
+}
+function onBvrOver(evt) {
+  setStyleRvOver(bvr);
+}
+
+
+//----------- events sur rectangle b de translation B
+
+function onBOut(evt) {
+  setStyleOut(b);
+}
+function onBOver(evt) {
+  setStyleOver(b);
+}
+function onBClick(evt) {
+  bvC = setScrollClickX(evt,b);
+  setData(bv.firstChild,bvC);
+  updateR();
+  updateV();
+  updateColor();
+}
+function onBDown(evt) {
+  setStyleFocus(b);
+  x0=evt.clientX;
+  x1 = getScrollX(b);
+  root.addEventListener("mousemove",onBMove,false);
+  root.addEventListener("mouseup",onBUp,false);
+  setStyleFocus(b);
+}
+function onBUp(evt) {
+  root.removeEventListener("mousemove",onBMove,false);
+  root.removeEventListener("mouseup",onBUp,false);
+  setStyleOut(b);
+  updateR();
+  updateV();
+  updateColor();
+}
+function onBMove(evt) {
+ bvC = setScrollMoveX(evt,b);
+ setData(bv.firstChild,bvC);
+ updateR();
+ updateV();
+ updateColor();
+}
+
+//----------- events sur rectangle color
+
+function onZOut(evt) {
+  fz.setAttribute("style","fill:lavender;");
+  tz.firstChild.data = "";
+}
+function onZOver(evt) {
+  fz.setAttribute("style","fill:black;");
+  tz.firstChild.data = "Select color";
+}
+
+//---------- style scroller
+function setStyleOut(r) {
+  r.setAttribute("style","fill:white;stroke-width:1;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5");
+}
+function setStyleOver(r) {
+  r.setAttribute("style","fill:lavender;stroke-width:1;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5");
+}
+function setStyleFocus(r) {
+  r.setAttribute("style","fill:lavender;stroke-width:1;stroke:black;cursor:move;fill-opacity:0.5");
+}
+
+
+//--------- styles rectangle de saisie valeur
+function setStyleRvOut(r) {
+  r.setAttribute("style","fill:none;stroke-width:1;stroke:rgb(160,160,160);");
+}
+function setStyleRvOver(r) {
+  r.setAttribute("style","fill:lavender;stroke-width:1;stroke:rgb(160,160,160);fill-opacity:0.5");
+}
+function setStyleRvKeypress(r) {
+  r.setAttribute("style","fill:none;stroke-width:1;stroke:black;cursor:default");
+}
+function setStyleRvFocus(r) {
+  r.setAttribute("style","fill:none;stroke-width:1;stroke:black;cursor:default");
+}
+
+//-------------- common
+
+function setScrollMoveX(evt,e) {
+  var x =Math.max(0,Math.min(255,(evt.clientX-x0)*f+x1));
+  setScrollX(e,x);
+   return parseInt(x);
+}
+function setScrollClickX(evt,e) {
+  var x =Math.max(0,Math.min(255,(evt.clientX-eX0)*f));
+  setScrollX(e,x);
+   return parseInt(x);
+}
+function setScrollX(e,x) {
+  e.setAttribute("x", x-4);
+}
+function getScrollX(e) {
+   return parseFloat(e.getAttribute("x"));
+}
+
+function updateR() {
+  var i;
+  for (i=0;i < 16;i++) setFill(ar[i],i*16,vvC,bvC);
+  setFill(ar[16],255,vvC,bvC);
+}
+
+function updateV() {
+  var i;
+  for (i=0;i < 16;i++) setFill(av[i],rvC,i*16,bvC);
+  setFill(av[16],rvC,255,bvC);
+}
+
+function updateB() {
+  var i;
+  for (i=0;i < 16;i++) setFill(ab[i],rvC,vvC,i*16);
+  setFill(ab[16],rvC,vvC,255);
+}
+
+function setFill(e,x,y,z) {
+ e.setAttribute("style","fill:rgb("+x+","+y+","+z+")");
+}
+function setData(d,v) {
+  if (v < 10) d.data="00"+v;
+  else if (v < 100) d.data="0"+v;
+  else d.data=v;
+}
+function setTextRect(r,t) {
+  var v = t.getBBox();
+  r.setAttribute("x",v.x-4);
+  r.setAttribute("y",v.y-4);
+  r.setAttribute("width",v.width+8);
+  r.setAttribute("height",v.height+8);
+}
+function updateColor() {
+  setFill(z,rvC,vvC,bvC);
+}
+function update() {
+ r.setAttribute("x", rvC-4);
+ v.setAttribute("x", vvC-4);
+ b.setAttribute("x", bvC-4);
+ setData(rv.firstChild,rvC);
+ setData(vv.firstChild,vvC);
+ setData(bv.firstChild,bvC);
+ updateR();
+ updateV();
+ updateB();
+ updateColor();
+}
+function setColor(x,y,z) {
+ rvC=x;vvC=y;bvC=z;
+ update();
+}
+
+//---------- fonctions de transformation de couleurs
+
+function rgb(r, g, b) {
+ var n = (r<<16) + (g<<8) + b;    //entier base 10
+ var iValColor=dec2hex(n); //entier en base 16
+ var s='';
+ for(i=iValColor.length;i<6;i++){
+    s='0'+s;
+ }
+ return '#' + s + iValColor;
+}
+    
+function dec2hex(dec) {
+        var hexa='0123456789ABCDEF',hex=''
+        while (dec>15){
+            tmp=dec-(Math.floor(dec/16))*16;
+            hex=hexa.charAt(tmp)+hex;
+            dec=Math.floor(dec/16);
+        }
+        hex=hexa.charAt(dec)+hex;
+        return(hex);
+}
+function HexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+function HexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+function HexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+
+
+//------------ saisie de la valeur d'une composante
+function inputV(evt,e,ev) {
+  var c = evt.charCode;
+  if (!c) c = evt.keyCode;
+  if (c == 13) {
+    tvc = Math.min(255,Math.max(0,parseInt(tv)))
+    e.setAttribute("x", tvc-4);
+    setData(ev.firstChild,tvc);
+    tv="";
+    return true;
+  }
+  else if (c == 8 && tv.length >= 1) {
+     tv = tv.length == 1 ? "" : tv.substring(0,tv.length-1);
+     ev.firstChild.data = tv;
+  }
+  else if (c >= 48 && c <= 57 && tv.length < 3) {
+    tv +=  String.fromCharCode(c);
+    ev.firstChild.data = tv;
+ }
+  return false;
+}
+
+function showName(x,t) {
+  //window.parent.alert("showName " + t+ " " + n);
+  n.setAttribute("x", x);
+  n.firstChild.data = t;
+}
+function hideName() {
+  showName(-4,"");
+}
+ ]]></script>
+ 
+ <!--rect x='1' y='1' width='279' height='170' style='fill:white;stroke:black;'/-->
+<g style="font-familiy:serif;">
+ <g transform='translate(10 15)'>
+  <text id='n' x='-4' y='-2' style="font-size:8pt" pointer-events='none'>black</text>
+  <rect x='-4' y='0'  height='16' width='20' style='fill:rgb(0,255,255)' onclick='setColor(0,255,255)' onmouseover="showName(-4,'aqua')" onmouseout="hideName()"/>
+  <rect x='16' y='0' height='16' width='17' style='fill:rgb(0,0,0)' onclick='setColor(0,0,0)' onmouseover="showName(16,'black')" onmouseout="hideName()"/>
+  <rect x='32' y='0' height='16' width='17' style='fill:rgb(0,0,255)' onclick='setColor(0,0,255)' onmouseover="showName(32,'blue')" onmouseout="hideName()"/>
+  <rect x='48' y='0' height='16' width='17' style='fill:rgb(255,0,255)' onclick='setColor(255,0,255)' onmouseover="showName(48,'fuchsia')" onmouseout="hideName()"/>
+  <rect x='64' y='0' height='16' width='17' style='fill:rgb(128,128,128)' onclick='setColor(128,128,128)' onmouseover="showName(64,'gray')" onmouseout="hideName()"/>
+  <rect x='80' y='0' height='16' width='17' style='fill:rgb(0,128,0)' onclick='setColor(0,128,0)' onmouseover="showName(80,'green')" onmouseout="hideName()"/>
+  <rect x='96' y='0' height='16' width='17' style='fill:rgb(0,255,0)' onclick='setColor(0,255,0)' onmouseover="showName(96,'lime')" onmouseout="hideName()"/>
+  <rect x='112' y='0' height='16' width='17' style='fill:rgb(128,0,0)' onclick='setColor(128,0,0)' onmouseover="showName(112,'maroon')" onmouseout="hideName()"/>
+  <rect x='128' y='0' height='16' width='17' style='fill:rgb(0,0,128)' onclick='setColor(0,0,128)' onmouseover="showName(128,'navy')" onmouseout="hideName()"/>
+  <rect x='144' y='0' height='16' width='17' style='fill:rgb(128,128,0)' onclick='setColor(128,128,0)' onmouseover="showName(144,'olive')" onmouseout="hideName()"/>
+  <rect x='160' y='0' height='16' width='17' style='fill:rgb(128,0,128)' onclick='setColor(128,0,128)' onmouseover="showName(160,'purple')" onmouseout="hideName()"/>
+  <rect x='176' y='0' height='16' width='17' style='fill:rgb(255,0,0)' onclick='setColor(255,0,0)' onmouseover="showName(176,'red')" onmouseout="hideName()"/>
+  <rect x='192' y='0' height='16' width='17' style='fill:rgb(192,192,192)' onclick='setColor(192,192,192)' onmouseover="showName(192,'silver')" onmouseout="hideName()"/>
+  <rect x='208' y='0' height='16' width='17' style='fill:rgb(0,128,128)' onclick='setColor(0,128,128)' onmouseover="showName(208,'teal')" onmouseout="hideName()"/>
+  <rect x='224' y='0' height='16' width='17' style='fill:rgb(255,255,255)' onclick='setColor(255,255,255)' onmouseover="showName(224,'white')" onmouseout="hideName()"/>
+  <rect x='240' y='0' height='16' width='19' style='fill:rgb(255,255,0)' onclick='setColor(255,255,0)' onmouseover="showName(240,'yellow')" onmouseout="hideName()"/>
+ </g>
+ 
+ <g transform='translate(10 40)'>
+  
+  <rect id='r0' x='-4' y='0'  height='16' width='20' style='fill:rgb(0,0,0)'/>
+  
+  <rect id='r1' x='16' y='0' height='16' width='17' style='fill:rgb(16,0,0)'/>
+  <rect id='r2' x='32' y='0' height='16' width='17' style='fill:rgb(32,0,0)'/>
+  <rect id='r3' x='48' y='0' height='16' width='17' style='fill:rgb(48,0,0)'/>
+  <rect id='r4' x='64' y='0' height='16' width='17' style='fill:rgb(64,0,0)'/>
+  <rect id='r5' x='80' y='0' height='16' width='17' style='fill:rgb(80,0,0)'/>
+  <rect id='r6' x='96' y='0' height='16' width='17' style='fill:rgb(96,0,0)'/>
+  <rect id='r7' x='112' y='0' height='16' width='17' style='fill:rgb(112,0,0)'/>
+  <rect id='r8' x='128' y='0' height='16' width='17' style='fill:rgb(128,0,0)'/>
+  <rect id='r9' x='144' y='0' height='16' width='17' style='fill:rgb(144,0,0)'/>
+  <rect id='r10' x='160' y='0' height='16' width='17' style='fill:rgb(160,0,0)'/>
+  <rect id='r11' x='176' y='0' height='16' width='17' style='fill:rgb(176,0,0)'/>
+  <rect id='r12' x='192' y='0' height='16' width='17' style='fill:rgb(192,0,0)'/>
+  <rect id='r13' x='208' y='0' height='16' width='17' style='fill:rgb(208,0,0)'/>
+  <rect id='r14' x='224' y='0' height='16' width='17' style='fill:rgb(224,0,0)'/>
+  <rect id='r15' x='240' y='0' height='16' width='17' style='fill:rgb(240,0,0)'/>
+  <rect id='r16' x='256' y='0' height='16' width='3' style='fill:rgb(255,0,0)'/>
+  <rect id='r' x='-4' y='-4'  height='24' width='8' style='fill:white;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5' />
+  <!--path d='M100 -4 h8 v12 l-4 8 l -4 -8 z' style='fill:white;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5' /-->
+  
+ </g>
+ 
+ <g transform='translate(10 70)'>
+  <rect id='v0' x='-4' y='0'  height='16' width='20' style='fill:rgb(0,0,0)'/>
+  <rect id='v1' x='16' y='0' height='16' width='17' style='fill:rgb(0,16,0)'/>
+  <rect id='v2' x='32' y='0' height='16' width='17' style='fill:rgb(0,32,0)'/>
+  <rect id='v3' x='48' y='0' height='16' width='17' style='fill:rgb(0,48,0)'/>
+  <rect id='v4' x='64' y='0' height='16' width='17' style='fill:rgb(0,64,0)'/>
+  <rect id='v5' x='80' y='0' height='16' width='17' style='fill:rgb(0,80,0)'/>
+  <rect id='v6' x='96' y='0' height='16' width='17' style='fill:rgb(0,96,0)'/>
+  <rect id='v7' x='112' y='0' height='16' width='17' style='fill:rgb(0,112,0)'/>
+  <rect id='v8' x='128' y='0' height='16' width='17' style='fill:rgb(0,128,0)'/>
+  <rect id='v9' x='144' y='0' height='16' width='17' style='fill:rgb(0,144,0)'/>
+  <rect id='v10' x='160' y='0' height='16' width='17' style='fill:rgb(0,160,0)'/>
+  <rect id='v11' x='176' y='0' height='16' width='17' style='fill:rgb(0,176,0)'/>
+  <rect id='v12' x='192' y='0' height='16' width='17' style='fill:rgb(0,192,0)'/>
+  <rect id='v13' x='208' y='0' height='16' width='17' style='fill:rgb(0,208,0)'/>
+  <rect id='v14' x='224' y='0' height='16' width='17' style='fill:rgb(0,224,0)'/>
+  <rect id='v15' x='240' y='0' height='16' width='17' style='fill:rgb(0,240,0)'/>
+  <rect id='v16' x='256' y='0' height='16' width='3' style='fill:rgb(0,255,0)'/>
+  <rect id='v' x='-4' y='-4'  height='24' width='8' style='fill:white;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5' />
+ </g>
+
+<g transform='translate(10 100)'>
+  <rect id='b0' x='-4' y='0'  height='16' width='20' style='fill:rgb(0,0,0)'/>
+  <rect id='b1' x='16' y='0' height='16' width='17' style='fill:rgb(0,0,16)'/>
+  <rect id='b2' x='32' y='0' height='16' width='17' style='fill:rgb(0,0,32)'/>
+  <rect id='b3' x='48' y='0' height='16' width='17' style='fill:rgb(0,0,48)'/>
+  <rect id='b4' x='64' y='0' height='16' width='17' style='fill:rgb(0,0,64)'/>
+  <rect id='b5' x='80' y='0' height='16' width='17' style='fill:rgb(0,0,80)'/>
+  <rect id='b6' x='96' y='0' height='16' width='17' style='fill:rgb(0,0,96)'/>
+  <rect id='b7' x='112' y='0' height='16' width='17' style='fill:rgb(0,0,112)'/>
+  <rect id='b8' x='128' y='0' height='16' width='17' style='fill:rgb(0,0,128)'/>
+  <rect id='b9' x='144' y='0' height='16' width='17' style='fill:rgb(0,0,144)'/>
+  <rect id='b10' x='160' y='0' height='16' width='17' style='fill:rgb(0,0,160)'/>
+  <rect id='b11' x='176' y='0' height='16' width='17' style='fill:rgb(0,0,176)'/>
+  <rect id='b12' x='192' y='0' height='16' width='17' style='fill:rgb(0,0,192)'/>
+  <rect id='b13' x='208' y='0' height='16' width='17' style='fill:rgb(0,0,208)'/>
+  <rect id='b14' x='224' y='0' height='16' width='17' style='fill:rgb(0,0,224)'/>
+  <rect id='b15' x='240' y='0' height='16' width='17' style='fill:rgb(0,0,240)'/>
+  <rect id='b16' x='256' y='0' height='16' width='3' style='fill:rgb(0,0,255)'/>
+ <rect id='b' x='-4' y='-4'  height='24' width='8' style='fill:white;stroke:rgb(160,160,160);cursor:move;fill-opacity:0.5' />
+ </g>
+
+ 
+ <g transform='translate(10 140)'>
+    <text x='0' y='15' style="font-size:10pt">R</text>
+    <text id='rv' x='20' y='14' style="font-size:10pt" pointer-events='none'>000</text>
+     <rect id='rvr' x='20' y='0' height='16' width='26' style="fill:none;stroke:rgb(160,160,160)" pointer-events='all'/>
+ </g>
+ 
+  <g transform='translate(60 140)'>
+    <text x='0' y='15' style="font-size:10pt">G</text>
+    <text id='vv' x='20' y='14' style="font-size:10pt" pointer-events='none'>000</text>
+     <rect id='vvr' x='20' y='0' height='16' width='26' style="fill:none;stroke:rgb(160,160,160)" pointer-events='all'/>
+ </g>
+ 
+  <g transform='translate(110 140)'>
+    <text x='0' y='15' style="font-size:10pt">B</text>
+    <text id='bv' x='20' y='14' style="font-size:10pt" pointer-events='none'>000</text>
+     <rect id='bvr' x='20' y='0' height='16' width='26' style="fill:none;stroke:rgb(160,160,160)" pointer-events='all'/>
+ </g>
+ 
+ <g transform='translate(160 130)'>
+    <rect id='fcolor' x='0' y='8' width='110' height='26' style='fill:lavender;'/>
+    <rect id='color' x='2' y='10' width='106' height='22' style='fill:back;' onmouseover="onZOver()" onmouseout="onZOut()"/>
+    <text id="tcolor" x='0' y='6' style="font-size:10pt"> </text>
+ </g>
+ </g>
+</svg>
+

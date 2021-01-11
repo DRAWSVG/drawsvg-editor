@@ -1,0 +1,9 @@
+/** Add css rules here for your application. */
+
+.embedSvg {
+  background-color: white;
+}
+.svgViewer {
+  background-color: lavender;
+  border: 0px solid #666;
+}

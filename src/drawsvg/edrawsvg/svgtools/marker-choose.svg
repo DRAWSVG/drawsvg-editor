@@ -1,0 +1,374 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width="140" height="350" viewBox="0 0 140 350" onload='init(evt)'>
+<script type="text/ecmascript"><![CDATA[
+
+// External API
+
+window.parent.markerChooser = {
+	load : function(f,sw) {mx.loadList(f,sw);},
+	hasMarker :  function(v) {return mx.hasMarker(v);},
+	select : function(v) {mx.selectMarker(get(v));},
+	getSelectedId : function() {return mx.getSelectedId();}
+};
+
+
+var svgdoc = null, root = null;
+
+
+function init(evt) {
+	try {
+		root=evt.target;
+		svgdoc=evt.target.ownerDocument;
+		mx.init(evt);
+		// notification
+		if (parent.svgViewerNotifyOnLoad) parent.svgViewerNotifyOnLoad(evt);
+	}
+	catch(ex) {
+		alert(ex);
+	}
+}
+	
+var mx = {
+        
+	init : function(evt) {
+		// facteur de transformation clientX en coordonnees svg
+		mx.fw2svg = getWidth(root)/140;
+		mx.mlist = get("mlist");
+		// barre de scrolling vertical
+		mx.bmlist = get("bmlist");
+		// texte selection
+		mx.tmlistc = get("tmlistc");
+		mx.dmlistc = get("dmlistc");
+		// hauteur de la liste complete
+		mx.hmlist=0;
+		// hauteur  de dessin de la liste
+		mx.listH=300;
+		// hauteur max de la barre de scrolling
+		mx.barH=270;
+		// hauteur de la barre de scrolling
+		mx.hbmlist=270;
+		// marqueur selectionne
+		mx.mlistc = null;
+		mx.rmlistc = null;
+		// translation de la barre
+		mx.mv=false;
+		mx.mvY0 = 0
+		mx.mvY1 = 0;
+		// e = end, m=mid, s=start, p=point
+		mx.marker = 'e';
+		// pour tester
+		//mx.loadList(1,1);
+		
+	},
+	
+	// Chargement de la liste des marqueurs
+	loadList : function(f,sw) {
+		var l = svgdoc.getElementsByTagName("marker");
+		mx.dList = new Array();
+		for (var i=0;i < l.length;i++) {
+			mx.dList[i]=l.item(i);
+		}
+		// pour simuler la scrolllist
+		//for (;i < 10;i++)  mx.dList[i]=l.item(0);
+		// dessin
+		mx.drawMarkerList(f,sw);
+		
+	},
+	// Dessin des marqueurs
+	drawMarkerList : function(f,sw) {
+		with(this) {
+			var y = 0, x= 0;
+			for (var i=0;i <dList.length;i++) {
+				drawMarker(dList[i],x%100,y,50,40,5,f,sw);
+				x  += 50;
+				if (x%100 == 0) y += 40;
+			}
+			if (x%100 != 0) y += 40;
+			hmlist=y;
+			if (hmlist > listH) {
+				show(get("mscroll"));
+				hbmlist= listH/hmlist*barH;
+				setHeight(bmlist,hbmlist);
+			}
+			else {
+				hide(get("mscroll"));
+				setHeight(get("rmlist"),y);
+				setTranslate(get("imlistc"),0,y);
+				setWidth(root,120);
+				setHeight(root,y+50);
+				setViewBox(root,"0 0 120 " + (y+50));
+			}
+			selectMarker(dList[0]);
+		}
+	},
+	// Dessin d'un marqueur d, position y, dimension (w,h), bordure b,ratio f du viewport, sw stroke width
+	drawMarker : function(d,x,y,w,h,b,f,sw) {
+		with(this) {
+		var s = setHeight(setWidth(setViewBox(setY(setX(mlist.appendChild(create("svg")),x),y),"0 0 " + w*f +" " + h*f),w),h);
+		var c = setId(s.appendChild(create("clipPath")),'c'+getId(d));
+		setHeight(setWidth(setY(setX(c.appendChild(create("rect")),0),0),w*f),h*f);
+		setStrokeWidth(setClipPath(setPtyMarker(setY2(setX2(setY1(setX1(s.appendChild(create("line")),b*2*f),h*f/2),(w-b*2)*f),h*f/2),d),'c'+getId(d)),sw);
+		setCursor(setIdNext(setFillOpacity(setFill(setStroke(setHeight(setWidth(setY(setX(s.appendChild(create("rect")),b*f),b*f),(w-b*2)*f),(h-b*2)*f),"none"),"lavender"),0),'r',getId(d)),'pointer');
+		}
+	},
+	
+	setPtyMarker: function(e,v) {
+		switch(mx.marker) {
+			case 'e' :  return setMarkerEnd(e,getId(v));
+			case 'm' :  return setMarkerMid(e,getId(v));
+			case 's' :  return setMarkerStart(e,getId(v));
+			case 'p' :  return setMarker(e,getId(v));
+			default :  return setMarkerEnd(e,getId(v));
+		}
+	},
+	
+	selectMarker : function(v) {
+		with(mx) {
+			if (mlistc != null) {
+				setFillOpacity(rmlistc,0);
+				setStroke(rmlistc,"none");
+			}
+			mlistc = v;
+			rmlistc = get('r'+getId(v));
+			setFillOpacity(rmlistc,0.5);
+			setStroke(rmlistc,"black");
+			show(v);
+		}
+	},
+	
+	getSelectedId : function() {
+		return mx.mlistc != null ? getId(mx.mlistc) : null;
+	},
+	
+	hasMarker : function(v) {
+		var e = find(v);
+		return e != null && e.tagName == "marker" ? true : false;
+	},
+	
+	show: function(e) {
+		with(mx) {
+			if (e != null) {
+				tmlistc.firstChild.data=getId(e);
+				dmlistc.firstChild.data=getA(e,"markerWidth") + " x " + getA(e,"markerHeight");
+			}
+			else {
+				tmlistc.firstChild.data=" ";
+				dmlistc.firstChild.data=" ";
+			}
+		}
+	},
+	
+	onMOver : function(evt) {
+		evt.stopPropagation();
+		with(mx) {
+			if (evt.target != rmlistc && evt.target.tagName == "rect") {
+				setFillOpacity(evt.target,0.2);
+				show(get(getIdNext(evt.target)));
+			}
+		}
+	},
+	onMOut : function(evt) {
+		evt.stopPropagation();
+		with(mx) {
+			if (evt.target != rmlistc && evt.target.tagName == "rect") {
+				setFillOpacity(evt.target,0);
+				show(mlistc);
+			}
+		}
+	},
+	onMClick : function(evt) {
+		evt.stopPropagation();
+		if (evt.target != mx.rmlistc && evt.target.tagName == "rect")  mx.selectMarker(get(getIdNext(evt.target)));
+	},
+	onBListDown : function(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+		with(mx) {
+			mvY0 = evt.clientY;
+			mvY1 = getY(bmlist);
+			addListener(addListener(root,"mousemove",onBListMove),"mouseup",onBListUp);
+			mv = true;
+		}
+	},
+	onBListMove : function (evt) {
+		evt.stopPropagation();
+		with(mx) {
+			var y =Math.max(0,Math.min(barH-hbmlist,(evt.clientY-mvY0)*fw2svg+mvY1));
+			var p = -hmlist/barH*y;
+			mvY0 = evt.clientY;
+			mvY1 = y;
+			setY(bmlist,y);
+			setTranslate(mlist,0,p);
+		}
+	},
+	onBListUp: function(evt) {
+		evt.stopPropagation();
+		with(mx) {
+			mv=false;
+			removeListener(removeListener(root,"mousemove",onBListMove),"mouseup",onBListUp);
+		}
+	},
+	onBDown : function (evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+		with(mx) {
+			var y =Math.max(0,Math.min(barH-hbmlist,getY(bmlist)+25*barH/listH));
+			var p = -hmlist/barH*y;
+			setY(bmlist,y);
+			setTranslate(mlist,0,p);
+		}
+	},
+	onBUp : function (evt) {
+		evt.stopPropagation();
+		with(mx) {
+			var y =Math.max(0,Math.min(barH-hbmlist,getY(bmlist)-25*barH/listH));
+			var p = -hmlist/barH*y;
+			setY(bmlist,y);
+			setTranslate(mlist,0,p);
+		}
+	}
+};
+	
+	
+// Commons
+
+	function find(v) 				{return svgdoc.getElementById(v);}
+	function get(v) 				{var e=find(v);if (e== null) alert(v + " not found");return e;}
+	function create(t) 			{return svgdoc.createElementNS("http://www.w3.org/2000/svg",t);}
+	function addListener(e,t,h)     	{e.addEventListener(t,h,false);return e;}
+        function removeListener(e,t,h) 	{e.removeEventListener(t,h,false);return e;}
+
+	// Getters	
+	function getA(e,a) 			{return e.getAttribute(a);}
+	function getF(e,a) 			{return parseFloat(e.getAttribute(a));}
+	function getHeight(e)    		{return getF(e,"height");}
+	function getId(e)    			{return getA(e,"id");}
+	function getStroke(e)         		{return getStyleAttribute(e,"stroke");}
+	function getStyle(e)    		{return getA(e,"style");}
+	function getY(e)    			{return getF(e,"y");}
+	function getWidth(e)    		{return getF(e,"width");}
+	
+
+	// Setters
+	function setA(e,a,v) 			{e.setAttribute(a,v);return e;}
+	function setClipPath(e,v)   		{return setA(e,"clip-path","url(#"+v+")");}
+	function setCursor(e,v)       		{return setStyleAttribute(e,"cursor",v);}
+	function setFill(e,v)       		{return setStyleAttribute(e,"fill",v);}
+	function setFillOpacity(e,v)       	{return setStyleAttribute(e,"fill-opacity",v);}
+	function setHeight(e,v)   		{return setA(e,"height",v);}
+	function setId(e,v)  			{return setA(e,"id",v);}
+	function setMarkerEnd(e,v)        	{return setStyleAttribute(e,"marker-end","url(#"+v+")");}
+	function setMarkerMid(e,v)        	{return setStyleAttribute(e,"marker-mid","url(#"+v+")");}
+	function setMarkerStart(e,v)        {return setStyleAttribute(e,"marker-start","url(#"+v+")");}
+	function setMarker(e,v)        	{return setStyleAttribute(e,"marker","url(#"+v+")");}
+	function setStroke(e,v)       	{return setStyleAttribute(e,"stroke",v);}
+	function setStrokeWidth(e,v)       	{return setStyleAttribute(e,"stroke-width",v);}
+	function setStyle(e,v)  		{return setA(e,"style",v);}
+	function setTransform(e,v)  		{return setA(e,"transform",v);}
+	function setTranslate(e,x,y)  	{return setTransform(e,'translate('+x+','+y+')');}
+	function setViewBox(e,v)   		{return setA(e,"viewBox",v);}
+	function setVisibility(e,v) 		{return setStyleAttribute(e,"visibility",v);}
+	function setWidth(e,v)   		{return setA(e,"width",v);}
+	function setX(e,v)   			{return setA(e,"x",v);}
+	function setX1(e,v)   			{return setA(e,"x1",v);}
+	function setX2(e,v)   			{return setA(e,"x2",v);}
+	function setY(e,v)   			{return setA(e,"y",v);}
+	function setY1(e,v)   			{return setA(e,"y1",v);}
+	function setY2(e,v)   			{return setA(e,"y2",v);}
+
+	// [.]id 
+	function getIdNext(e)  		{var id = getId(e);return id.substring(1,id.length);}
+	function setIdNext(e,c,v)  		{return setId(e,c+v);}
+	
+	function show(e) {return setVisibility(e,"visible");}
+	function hide(e)  {return setVisibility(e,"hidden");}
+	
+	
+	// Getting & Setting style properties, use style attribute or property attribute if set
+	
+	function getStyleAttribute(e,a) {
+		var v = getStyleMember(e,a);
+		return v == null ? getA(e,a) : v;
+	}
+	function setStyleAttribute(e,a,u) {
+		var v = getStyleMember(e,a);
+		return v != null ? setStyleMember(e,a,u) : setA(e,a,u);
+	}
+	function getStyleMember(e,a) {
+		var v = getStyle(e);
+		if (v != null && v != "") {
+			var i = v.indexOf(a+":",0);
+			if (i != -1) {
+				var j = v.indexOf(":",i);
+				var k = v.indexOf(";",i);
+				if (k != -1) return v.substring(j+1,k);
+				else return v.substring(j+1,v.length);
+			}
+		}
+		return null;
+	}
+	function setStyleMember(e,a,u) {
+		var v = getStyle(e);
+		if (v != null && v != "") {
+			var i = v.indexOf(a+":",0);
+			if (i != -1) {
+				var j = v.indexOf(":",i);
+				var k = v.indexOf(";",i);
+				if (k != -1) setStyle(e,v.substring(0,j+1)+u+v.substring(k,v.length));
+				else setStyle(e,v.substring(0,j+1)+u+";");
+			}
+			else setA(e,"style",a+":"+u+";"+v);
+		}
+		else setA(e,"style",a+":"+u+";");
+	}
+	
+	
+	
+
+]]></script>
+	
+        <defs>
+	
+	<!-- pour tester>
+          <marker id="arrow15-5" viewBox="-15 -5 20 20" refX="0" refY="0" 
+            	markerUnits="strokeWidth" markerWidth="20" markerHeight="16" 
+	        orient="auto">
+    		    <path d="M -15 -5 L 0 0 L -15 5 z" fill="black"/>
+          </marker>
+	<marker id="arrow15-10" viewBox="-15 -10 20 20" refX="0" refY="0" 
+            	markerUnits="strokeWidth" markerWidth="20" markerHeight="16" 
+	        orient="auto">
+    		    <path d="M -15 -10 L 0 0 L -15 10 z" fill="black"/>
+          </marker>
+	
+	<-->
+	
+	<clipPath id='cmlist' >
+		 <rect x='0' y='0' width='100' height='300' />
+	</clipPath>
+		
+        </defs>
+	
+	<rect x='0' y='0' width='140' height='350' fill='white'/>
+	
+	<g transform="translate(10,10)">
+		<rect id="rmlist" x='0' y='0' width='100' height='300' stroke="black" stroke-opacity="0.3" fill="lavender" fill-opacity="0.1"/>
+		
+		<g clip-path="url(#cmlist)">
+		   <g id="mlist" stroke="black" stroke-width="1" onmouseover="mx.onMOver(evt)" onmouseout="mx.onMOut(evt)" onclick='mx.onMClick(evt)'/>
+		</g>
+   
+		
+		<g id="mscroll">
+			<rect x='105' y='15' width='14' height='270' stroke="black" fill="black" fill-opacity="0.1"/>
+			<rect transform="translate(0,15)" id='bmlist' onmousedown="mx.onBListDown(evt)" x='105' y='0' width='14' height='270' stroke="black" fill="black" fill-opacity="0.3" cursor='n-resize' />
+			<path d="M 105 11 l 7 -11 l 7 11 z" fill="black" onclick="mx.onBUp(evt)" cursor='pointer'/>
+			<path d="M 105 289 l 7 11 l 7 -11 z" fill="black" onclick="mx.onBDown(evt)" cursor='pointer'/>
+		</g>
+	   
+		<g id='imlistc' transform="translate(0,300)">
+			<text id="tmlistc" x="50" y="20" text-anchor='middle' font-size='10pt'> </text>
+			<text id="dmlistc" x="50" y="34" text-anchor='middle' font-size='10pt'> </text>
+		</g>
+	</g>
+    
+</svg>

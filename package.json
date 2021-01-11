@@ -1,0 +1,37 @@
+{
+  "name": "drawsvg-editor",
+  "productName": "DRAW-SVG Editor",
+  "description": "Electron distribution of DRAW-SVG  Editor",
+  "keywords": [
+    "SVG",
+    "editor",
+    "drawing"
+  ],
+  "license": "LGPL-3.0-only",
+  "main": "src/main.js",
+  "version": "8.8.0",
+  "author": "joseph LIARD",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.github.drawsvg.editor",
+    "asar": true,
+    "win": {
+      "icon": "build/jay-rond.png"
+    },
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    }
+  },
+  "dependencies": {
+    "update-electron-app": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron": "11.0.0-beta.20",
+    "electron-builder": "^22.9.1"
+  }
+}

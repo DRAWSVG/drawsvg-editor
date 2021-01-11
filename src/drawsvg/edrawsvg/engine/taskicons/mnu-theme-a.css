@@ -1,0 +1,319 @@
+
+/* les variables pour le theme a (toutes les couleurs sont differentes) */
+:root {
+--theme-background-color:#f5f7f8; /* ghostwhite -> w3-theme-l5 */
+--theme-foreground-color: #303e45;/* sienna -> w3-theme-dark */
+--theme-GrdTreeColor:#dfe5e8;  /* peachpuff -> w3-theme-l4 */
+--theme-ScrollbarBackColor:#FFEFD5; /* papayawhip  -> papayawhip en hex #FFEFD5 pour differencier */
+--theme-overTask-color:#303e45; /* sienna -> w3-theme-dark */
+--theme-bgTip-color:#FFEFD5; /*  peachpuff -> papayawhip  ?*/
+--theme-textTip-color:#303e45; /*  navy -> w3-theme-dark */
+--theme-shape-fill-color:rosybrown; /* khaki */
+--theme-mnu-row-fill-color:#e7f5fb; /* w3-theme-l4 */
+
+}
+
+/* les styles sans variables pour theme a */
+
+rect.wheel {
+	cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gceEB0O4vTJKAAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAEbSURBVEjH7Za9bsIwFIW/W4LUt8gblLELqH6sZMISAwy8E2FizpgR3gEJlJ/TgYBa2oS2BNSBI1myfKTz+dqSr+GHkmSSXiXN6Fp1+MtoNBJQrVartPPw4XCowWCgLMu6g5yHS1JVVUrT9HrId+FHdQaZTCZyzn0JP2q9Xguo2i7+qQ1QliVJkmBmmBlxHJ/mZkYYhgAG7Joy7MIxTYE9sJvP59Ptdst4PMbMkJQAS4CiKJJ+v5/8ugIzi83Mm9msKIpze1l7vin8IqALPQAPwI0BkqaSvKQoCIJz+632fJ7n7k90772A04iiSJI+rR32Id+UEbQBer0ezjkWi8XHqjgwYLPZEIahgOf/+VzftOHcpWXepelf+215B5ynPz+v/LzCAAAAAElFTkSuQmCC") 12 12,auto;
+     }
+     
+text.unselect {
+	pointer-events:none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+      rect.tBlackVBarBack {
+	      fill : whitesmoke;
+	      stroke:dimgray;
+	      stroke-width:1px;
+      }
+      rect.tBlackVBarBackR {
+	      fill : whitesmoke;
+	      stroke:none;
+	      cursor: pointer;
+      }
+      path.tBlackVBarUD {
+	      fill : dimgray;
+	      stroke:none;
+	      cursor: pointer;
+      }
+      rect.tBlackVBar{
+	      fill : lightgray;
+	      stroke:dimgray;
+	      stroke-width:1px;
+	      cursor: move;
+      }
+      rect.tSiennaVTabTop {
+	      fill:#FFEFD5;stroke:black;stroke-width:0.2px;
+      }
+      line.tSiennaVTabSep, line.tSiennaVTabBorder {
+	       stroke:var(--theme-GrdTreeColor);stroke-width:1px;
+      }
+	   
+      rect.tSiennaVTab {
+          fill:url(#tSiennaGrdTreeOpen);fill-opacity:1;stroke:none;
+      }
+      g.tSiennaVTab {
+          fill:url(#tSiennaGrdTreeOpen);fill-opacity:1;stroke:none;
+      }
+      rect.tSiennaVTabBack {
+	      fill:white;stroke:black;stroke-width:0.2px;
+      }
+      g.tSiennaVTabRect {
+          fill:white;fill-opacity:0.5;stroke:none;
+		   stroke-width:0.1px;cursor:pointer;
+      }
+      g.tSiennaVTabText {
+          fill:black;font-size:3px;pointer-events:none;font-family:verdana,serif;text-anchor:middle;
+      }
+      rect.tSiennaBarBack {
+	      fill : #FFEFD5;
+	      stroke:#303e45;
+	      stroke-width:0.5px;
+      }
+      path.tSiennaBarBack {
+	      fill : #FFEFD5;
+	      stroke:#303e45;
+	      stroke-width:1px;
+      }
+      rect.tSiennaBarBackR {
+	      fill : #FFEFD5;stroke:none;cursor: pointer;
+      }
+      path.tSiennaBarArrow {
+	      fill : #303e45;stroke:none;cursor: pointer;
+      }
+      path.tSiennaBarArrow:hover {
+			fill:black;
+		}
+      rect.tSiennaBar{
+		fill:url(#tSiennaGrdTreeClose);
+	     stroke:none;cursor: move;
+      }
+      rect.tSiennaBar:hover{
+			fill-opacity: 1;
+     }
+     rect.tSiennaHBarBack {
+	      fill : #FFEFD5;stroke:none;cursor: pointer;
+      }
+       rect.tSiennaHBar{
+	      fill : #303e45;
+	      stroke:none;
+	      cursor: move;
+      }
+      rect.area {
+        fill: white;
+        stroke: none;
+      }
+      rect.header {
+      fill:lavender;
+      fill-opacity:0.1;
+      stroke:none;
+      }
+      text.tSiennaHeader, text.tSiennaHeaderOpen  {
+      fill: #303e45; 
+      font-family:sans-serif,serif,monospace; font-size: 6px; font-style: normal; 
+      font-variant: normal; font-weight: bold;
+      stroke:none;
+      text-anchor:end;
+      cursor:pointer;
+      }
+      rect.tSiennaHeader {
+      fill:none;
+	  stroke:none;
+      cursor:pointer;
+	  pointer-events:all;
+      }
+	  text.tSiennaHeaderOpen {
+	  font-style: italic; 
+      }
+      rect.tSiennaHeaderOpen {
+      fill:none;
+      fill-opacity:0.01;
+      stroke:none;
+      cursor:pointer;
+	  pointer-events:all;
+      }
+	  
+      rect.tSiennaHeaderBox {
+	fill:none;
+	stroke: none; 
+	stroke-width:0.2;
+      }
+      text.tSiennaTitle {
+      fill:#303e45; 
+      font-family: sans-serif,serif,monospace; font-size: 4px; font-style: normal; 
+      font-variant: normal; font-weight: normal;
+      stroke:none;
+      text-anchor:start;
+      }
+	  line.tSiennaTitle {
+		  stroke: #becbd2; 
+		  stroke-width:0.5px;
+		  
+	 }
+	rect.tSiennaTitle {
+		  fill: #dfe5e8; 
+		  fill-opacity:0.5;
+		  pointer-events:none;
+		  
+	 }
+	  rect.theme-row {
+		 fill: #f5f7f8;
+		  pointer-events:none;
+    }
+	
+      rect.value {
+	fill: white;
+	fill-opacity : 0.1;	
+	stroke:none;
+	cursor:pointer;
+      }
+      text.tSiennaValue {
+      fill: #303e45; 
+      font-family: serif,monospace; font-size: 4px; font-style: normal; 
+      font-variant: normal; font-weight: normal;
+      stroke:none;
+      text-anchor:end;
+      }
+      text.tSiennaValue0 {
+      fill: #303e45; 
+      font-family: serif,monospace; font-size: 4px; font-style: normal; 
+      font-variant: normal; font-weight: normal;
+      stroke:none;
+      text-anchor:end;
+      user-select:none;
+      -moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+      }
+      text.tSiennaValue1 {
+      fill: #303e45; 
+      font-family: serif,monospace; font-size: 4px; font-style: normal; 
+      font-variant: normal; font-weight: bold;
+      stroke:none;
+      text-anchor:end;
+      user-select:none;
+      -moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+      }
+      rect.tSiennaValues {fill:white;stroke:#303e45;stroke-width:0.4px;}
+      text.tSiennaBool {
+      fill: #303e45; 
+      font-family: sans-serif,monospace; font-size: 5px; font-style: normal; 
+      font-variant: normal; font-weight: normal;
+      stroke:none;
+      text-anchor:start;
+      }
+      circle.tSiennaBoolC {fill:white;stroke:#303e45;stroke-width:0.4px;}
+      circle.tSiennaBool0 {fill:white;stroke:none;}
+      circle.tSiennaBool1 {fill:#303e45;stroke:none;}
+      rect.tSiennaTip {
+	fill: #FFEFD5;
+      }
+      rect.tSiennaTask {
+		fill:white;fill-opacity:0.1;stroke-width:0.4px;cursor:pointer;stroke-dasharray: 1px, 1px;
+      }
+      rect.tSiennaTaskE {
+		fill:white;fill-opacity:0.1;stroke-width:0.4px;cursor:pointer;stroke-dasharray: 1px, 1px;
+      }
+      rect.tSiennaTaskD {
+		//fill:#303e45;fill-opacity:0.2;stroke:none;
+		opacity: 0.2;
+		filter: alpha(opacity=10);
+		//filter:url(#disabled-drop-shadow)
+      }
+       text.tSiennaTip {
+		fill:#303e45;font-weight:bold;
+      }
+      rect.tSiennaDisabled {
+      stroke: none;fill:#f5f7f8;fill-opacity:0.2;
+      }
+      text.tSiennaFontFamily {font-size:6;fill:#303e45;-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;}
+      rect.tSiennaTextListC {fill:none;stroke:#303e45;stroke-width:0.4px;}
+      text.tSiennaTextList2 {font-family:sans-serif;fill:papayawhip;-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;}
+      rect.tSiennaTextList2 {fill:#303e45;}
+      text.tSiennaTextList1 {font-family:sans-serif;fill:navy;font-weight:bold;-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;}
+      rect.tSiennaTextList1 {fill:peachpuff;}
+      text.tSiennaTextList0 {font-family:sans-serif;fill:#303e45;-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;}
+      rect.tSiennaTextList0 {fill:white;}
+      g.tSiennaFontSizeRect {fill:white;fill-opacity:0.1;stroke:none;cursor:pointer;}
+      path.tSiennaFontSizeArea {fill:papayawhip;stroke:#303e45;stroke-width:0.4px;}
+      g.tSiennaFontSizeText {font-family:sans-serif;font-weight:normal;fill:#303e45;}
+      
+      rect.icon {
+	      fill : white;fill-opacity:0.1;cursor: pointer;stroke-width:0.4px;
+      }
+      rect.btnTool {
+			fill : white;fill-opacity:0.1;cursor: pointer; stroke:none;
+			stroke-dasharray: 1px, 1px;stroke-width:0.4;
+			pointer-events:all;
+      }
+      rect.btnTool:hover {
+			stroke:#303e45;
+      }
+      rect.tSiennaMarkerBox {fill:white;fill-opacity:0.1;stroke:#303e45;stroke-width:0.4px;}
+      rect.tSiennaMarkerList0 {fill:white;fill-opacity:0.1;stroke:none;}
+      rect.tSiennaMarkerList1 {fill:#303e45;fill-opacity:0.2;stroke:none;stroke-width:0.4px;}
+      rect.tSiennaMarkerList0:hover {
+	      stroke:#303e45;
+	      stroke-width:0.4px;
+      }
+      rect.tSiennaTextEdit0 {
+	      fill : papayawhip;
+	      fill-opacity:0.5;
+	      stroke:none;
+      }
+      rect.tSiennaTextEdit0:hover {
+	      stroke:#303e45;
+	      stroke-width:0.4px;
+	      stroke-dasharray: 1px, 1px;
+      }
+      rect.tSiennaTextEdit1 {
+	      fill : papayawhip;
+	      fill-opacity:0.5;
+	      stroke:#303e45;
+	      stroke-width:0.4px;
+	      stroke-dasharray: 1px, 1px;
+      }
+      rect.tSiennaTextEdit2 {
+	      fill : papayawhip;
+	      fill-opacity:0.1;
+	      stroke:#303e45;
+	      stroke-width:0.4px;
+      }
+      g.tSiennaShape0 {
+		fill:rosybrown;stroke:none;
+      }
+      path.tSiennaShape0 {
+		fill:rosybrown;stroke:black;stroke-width:0.2;stroke-linejoin:round;cursor:pointer;
+      }
+       path.tSiennaShape1 {
+	fill : #303e45;stroke:black;stroke-width:0.2;stroke-linejoin:round;cursor:pointer;
+      }
+      rect.tSiennaShape0 {
+		fill:none;fill-opacity:0.1;stroke-width:0.4;stroke-dasharray: 1px, 1px;stroke:none;pointer-events:all;
+      }
+      rect.tSiennaShape1 {
+		fill:none;stroke-width:0.4;stroke:#303e45;pointer-events:all;
+      }
+     rect.tSiennaShape0:hover{
+		stroke:#303e45;
+      }
+      rect.transparent {
+	fill:none;
+	stroke:none;
+	pointer-events:all;
+}

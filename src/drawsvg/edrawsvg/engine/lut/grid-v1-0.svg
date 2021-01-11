@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="600" width="800" viewBox="0 0 400 300" preserveAspectRatio="xMinYMin meet" zoomAndPan="disable" onload="if (parent.svgViewerNotifyOnLoad) parent.svgViewerNotifyOnLoad(evt);">
+<defs>
+     <pattern id="svgEditorGrid0" patternUnits="userSpaceOnUse" x="0" y="0" width="10" height="10" viewBox="0 0 10 10" >
+	<defs>
+		<g id="svgEditorGridCircle">
+			<rect x="0" y="0" width="10" height="10" style="stroke:lavender;stroke-width:0.1;fill:none"/>
+			<g style="fill:black;stroke:none;">
+      
+			<!-- premier niveau -->
+		      <g fill="black">
+				<circle cx="0" cy="0" r="0.4"/><circle cx="10" cy="0" r="0.4"/>
+				<circle cx="0" cy="10" r="0.4"/><circle cx="10" cy="10" r="0.4"/>
+		      </g>
+      
+			<!-- deuxieme niveau 5 -->
+		      <g fill="black">
+				<circle cx="5" cy="0" r="0.2"/>
+				<circle cx="0" cy="5" r="0.2"/><circle cx="5" cy="5" r="0.2"/><circle cx="10" cy="5" r="0.2"/>
+				<circle cx="0" cy="5" r="0.2"/>
+		      </g>
+     
+      <!-- troisieme niveau 1 -->
+      <g fill="black">
+	<circle cx="1" cy="0" r="0.1"/><circle cx="2" cy="0" r="0.1"/><circle cx="3" cy="0" r="0.1"/><circle cx="4" cy="0" r="0.1"/>
+	<circle cx="6" cy="0" r="0.1"/><circle cx="7" cy="0" r="0.1"/><circle cx="8" cy="0" r="0.1"/><circle cx="9" cy="0" r="0.1"/>
+	<circle cx="0" cy="1" r="0.1"/><circle cx="1" cy="1" r="0.1"/><circle cx="2" cy="1" r="0.1"/><circle cx="3" cy="1" r="0.1"/><circle cx="4" cy="1" r="0.1"/>
+	<circle cx="5" cy="1" r="0.1"/><circle cx="6" cy="1" r="0.1"/><circle cx="7" cy="1" r="0.1"/><circle cx="8" cy="1" r="0.1"/><circle cx="9" cy="1" r="0.1"/><circle cx="10" cy="1" r="0.1"/>
+	<circle cx="0"  cy="2" r="0.1"/><circle cx="1"  cy="2" r="0.1"/><circle cx="2"  cy="2" r="0.1"/><circle cx="3"  cy="2" r="0.1"/><circle cx="4"  cy="2" r="0.1"/>
+	<circle cx="5"  cy="2" r="0.1"/><circle cx="6"  cy="2" r="0.1"/><circle cx="7"  cy="2" r="0.1"/><circle cx="8"  cy="2" r="0.1"/><circle cx="9"  cy="2" r="0.1"/><circle cx="10"  cy="2" r="0.1"/>
+	<circle cx="0"  cy="3" r="0.1"/><circle cx="1"  cy="3" r="0.1"/><circle cx="2"  cy="3" r="0.1"/><circle cx="3"  cy="3" r="0.1"/><circle cx="4"  cy="3" r="0.1"/>
+	<circle cx="5"  cy="3" r="0.1"/><circle cx="6"  cy="3" r="0.1"/><circle cx="7"  cy="3" r="0.1"/><circle cx="8"  cy="3" r="0.1"/><circle cx="9"  cy="3" r="0.1"/><circle cx="10"  cy="3" r="0.1"/>
+	<circle cx="0"  cy="4" r="0.1"/><circle cx="1"  cy="4" r="0.1"/><circle cx="2"  cy="4" r="0.1"/><circle cx="3"  cy="4" r="0.1"/><circle cx="4"  cy="4" r="0.1"/>
+	<circle cx="5"  cy="4" r="0.1"/><circle cx="6"  cy="4" r="0.1"/><circle cx="7"  cy="4" r="0.1"/><circle cx="8"  cy="4" r="0.1"/><circle cx="9"  cy="4" r="0.1"/><circle cx="10"  cy="4" r="0.1"/>
+	<circle cx="1" cy="5" r="0.1"/><circle cx="2" cy="5" r="0.1"/><circle cx="3" cy="5" r="0.1"/><circle cx="4" cy="5" r="0.1"/>
+	<circle cx="6" cy="5" r="0.1"/><circle cx="7" cy="5" r="0.1"/><circle cx="8" cy="5" r="0.1"/><circle cx="9" cy="5" r="0.1"/>
+	<circle cx="0" cy="6" r="0.1"/><circle cx="1" cy="6" r="0.1"/><circle cx="2" cy="6" r="0.1"/><circle cx="3" cy="6" r="0.1"/><circle cx="4" cy="6" r="0.1"/>
+	<circle cx="5" cy="6" r="0.1"/><circle cx="6" cy="6" r="0.1"/><circle cx="7" cy="6" r="0.1"/><circle cx="8" cy="6" r="0.1"/><circle cx="9" cy="6" r="0.1"/><circle cx="10" cy="6" r="0.1"/>
+	<circle cx="0" cy="7" r="0.1"/><circle cx="1" cy="7" r="0.1"/><circle cx="2" cy="7" r="0.1"/><circle cx="3" cy="7" r="0.1"/><circle cx="4" cy="7" r="0.1"/>
+	<circle cx="5" cy="7" r="0.1"/><circle cx="6" cy="7" r="0.1"/><circle cx="7" cy="7" r="0.1"/><circle cx="8" cy="7" r="0.1"/><circle cx="9" cy="7" r="0.1"/><circle cx="10" cy="7" r="0.1"/>
+	<circle cx="0" cy="8" r="0.1"/><circle cx="1" cy="8" r="0.1"/><circle cx="2" cy="8" r="0.1"/><circle cx="3" cy="8" r="0.1"/><circle cx="4" cy="8" r="0.1"/>
+	<circle cx="5" cy="8" r="0.1"/><circle cx="6" cy="8" r="0.1"/><circle cx="7" cy="8" r="0.1"/><circle cx="8" cy="8" r="0.1"/><circle cx="9" cy="8" r="0.1"/><circle cx="10" cy="8" r="0.1"/>
+	<circle cx="0" cy="9" r="0.1"/><circle cx="1" cy="9" r="0.1"/><circle cx="2" cy="9" r="0.1"/><circle cx="3" cy="9" r="0.1"/><circle cx="4" cy="9" r="0.1"/>
+	<circle cx="5" cy="9" r="0.1"/><circle cx="6" cy="9" r="0.1"/><circle cx="7" cy="9" r="0.1"/><circle cx="8" cy="9" r="0.1"/><circle cx="9" cy="9" r="0.1"/><circle cx="10" cy="8" r="0.1"/>
+	<circle cx="1" cy="10" r="0.1"/><circle cx="2" cy="10" r="0.1"/><circle cx="3" cy="10" r="0.1"/><circle cx="4" cy="10" r="0.1"/>
+	<circle cx="6" cy="10" r="0.1"/><circle cx="7" cy="10" r="0.1"/><circle cx="8" cy="10" r="0.1"/><circle cx="9" cy="10" r="0.1"/>
+      </g>
+      
+      </g>
+		</g>
+	</defs>
+	<use xlink:href="#svgEditorGridCircle" x="0" y="0"/>
+      
+    
+    </pattern>
+    <pattern id="svgEditorGrid01" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="100" viewBox="0 0 10 10" >
+		<use xlink:href="#svgEditorGridCircle" x="0" y="0"/>
+    </pattern>
+     <pattern id="svgEditorGrid1" patternUnits="userSpaceOnUse" x="0" y="0" width="10" height="10" viewBox="0 0 10 10" >
+	 <rect x="0" y="0" width="10" height="10" style="stroke:lavender;stroke-width:0.1;fill:none;"/>
+	 <g style="fill:none;stroke:black;stroke-width:0.4" transform="scale(0.1)">
+	    <!-- troisieme niveau 10 1 -->
+	     <g style="stroke-dasharray:2 8;">
+		<path d="M-1 0 h102 M-1 10 h102 M-1 20 h102 M-1 30 h102 M-1 40 h102 M-1 50 h102 M-1 60 h102 M-1 70 h102 M-1 80 h102 M-1 90 h102 M-1 100 h102"/>
+		<path d="M0-1 v102 M10-1 v102 M20-1 v102 M30-1 v102 M40-1 v102 M50 -1 v102 M60-1 v102 M70-1 v102 M80-1 v102 M90-1 v102 M100-1 v102"/>
+	     </g>
+	     <!-- deuxieme niveau 50/3 -->
+	     <g style="stroke-dasharray:6 44;">
+		<path d="M-3 0 h106 M-3 50 h106 M-3 100 h106"/>
+		<path d="M0-3 v106 M50-3 v106 M100-3 v106"/>
+	     </g>
+	     <!-- premier niveau 100/5 -->
+	      <g style="stroke-dasharray:10 90;">
+		<path d="M-5 0 h110 M-5 100 h110"/>
+		<path d="M0-5 v119 M100-5 v110"/>
+	     </g>
+	 </g>
+      </pattern> 
+</defs>
+  
+<rect fill="url(#svgEditorGrid01)" stroke="black" stroke-width="0.2"  x="0" y="0" width="800" height="600"/>
+<rect fill="url(#svgEditorGrid0)" stroke="black" stroke-width="0.2"  x="0" y="0" width="800" height="600"/>
+  
+</svg>

@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+
+.svg-app-TaskImage {
+	padding: 1px 1px 1px 1px;
+	border: 0px solid #ccc;
+	cursor: pointer;
+    cursor: hand;
+}
+.svg-app-TaskImage-started {
+	border: 1px solid red;
+}
+.svg-app-TaskImage:hover {
+	border-width: 1px;
+	border-color: #9cf #69e #69e #7af;
+}
+

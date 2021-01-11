@@ -1,0 +1,82 @@
+﻿<svg onload='Init(evt)' width='124' height='124' viewBox='0 0 124 124'
+     xmlns:xlink='http://www.w3.org/1999/xlink'
+     xmlns='http://www.w3.org/2000/svg'
+     xmlns:a3="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+    a3:scriptImplementation="Adobe"
+     >
+  <title>Une horloge en SVG</title>
+
+  <defs>
+    <script><![CDATA[
+        function SetTime () {
+            var Now = new Date();
+
+            var Seconds = Now.getSeconds();
+            var Minutes = Now.getMinutes() + Seconds / 60;
+            var Hours = Now.getHours() + Minutes / 60;
+            var Year = Now.getFullYear();
+
+            sec.setAttributeNS(null,   'transform', 'rotate(' + (Seconds * 6) + ')');
+            min.setAttributeNS(null,   'transform', 'rotate(' + (Minutes * 6) + ')');
+            hours.setAttributeNS(null, 'transform', 'rotate(' + (Hours * 30)  + ')');
+            day.firstChild.data = Now.getDate()+ '/' + (Now.getMonth()+1) + '/' + Year;
+          }
+
+        function Init (LoadEvent) {
+          // globals
+		  	  SVGDocument = LoadEvent.target.ownerDocument;
+          sec = SVGDocument.getElementById('seconds');
+          min = SVGDocument.getElementById('minutes');
+          hours = SVGDocument.getElementById('hours');
+          day = SVGDocument.getElementById('day');
+
+          SetTime();
+			    window.SetTime = SetTime;
+			    setInterval('window.SetTime()', 1000);
+        }
+    ]]></script>
+
+    <path id='outcircle' d='M -46 0 C -46 -63 46 -63 46 0'/>
+  </defs>
+
+  <rect fill='#3e5255' width='124' height='124'/>
+
+  <g transform='translate(0,5)'>
+    <g transform='translate(62 56)'>
+      <g>
+        <g fill='white' stroke='white'>
+          <circle cx='0' cy='-40' r='3'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(30)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(60)'/>
+          <circle cx='0' cy='-40' r='3' transform='rotate(90)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(120)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(150)'/>
+          <circle cx='0' cy='-40' r='3' transform='rotate(180)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(210)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(240)'/>
+          <circle cx='0' cy='-40' r='3' transform='rotate(270)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(300)'/>
+          <circle cx='0' cy='-40' r='2' transform='rotate(330)'/>
+        </g>
+        <text font-family='Arial, Helvetica, sans-serif' font-size='10pt' font-weight='bold' fill='#8fa391'>
+          <textPath xlink:href='#outcircle' letter-spacing='4'><a xlink:href='http://xmlfr.org/index/object.title/SVG/'>Réalisé en SVG</a></textPath>
+        </text>
+      </g>
+
+      <g id='hours' stroke-width='2' stroke='#aa1717' fill='#aa1717'>
+        <circle cx='0' cy='-30' r='3'/>
+        <line x1='0' y1='0' x2='0' y2='-30'/>
+      </g>
+      <g id='minutes' stroke-width='2' stroke='#aa1717' fill='#aa1717'>
+        <circle cx='0' cy='-40' r='3'/>
+        <line x1='0' y1='0' x2='0' y2='-40'/>
+      </g>
+      <g id='seconds'>
+        <line x1='0' y1='10' x2='0' y2='-50' stroke-width='1' stroke='white'/>
+      </g>
+
+      <text id='day' x='0' y='57' text-anchor='middle' fill='white' font-family='Verdana, Arial, Helvetica, sans-serif'>01/01/2000</text>
+      <circle cx='0' cy='0' r='3' fill='white' stroke='white'/>
+    </g>
+  </g>
+</svg>

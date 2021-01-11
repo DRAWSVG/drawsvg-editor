@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DRAW-SVG editor</title>
+    <link rel="shortcut icon" type="image/svg" href="home/img/jay-rond.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="home/img/apple-touch-icon-120x120-precomposed.png" /> 
+    <link rel="apple-touch-icon" sizes="152x152" href="home/img/apple-touch-icon-152x152-precomposed.png" />
+   <link rel="stylesheet" href="home/css/home.css"/>
+   <link rel="stylesheet" href="home/css/w3-v4.css"/>
+  <link rel="stylesheet" href="home/css/w3-theme-blue-grey.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+  </head>
+  <body>
+  <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-animate-left" style="display:none;z-index:2;width:100px;min-width:300px" id="mySidebar" onclick="w3_close()">
+  <div class="w3-bar w3-theme-l3">
+	<div class="w3-button  w3-right w3-middle w3-margin-right" style="margin-top:6px" onclick="w3_close()"><i class="fa fa-close"></i></div>
+	<header class="w3-left w3-margin-left">
+		<h4><b>Online Tools</b></h4>
+	</header>
+  </div>
+  <div class="w3-container cardTool">
+	  <div class="w3-row w3-container ">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/drawsvg.html" target="_blank"><img src="home/img/jay.svg" alt="draw" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Edit your drawings.<br/>
+			<a href="http://drawsvg.org/drawsvg.html"  target="_blank">Draw</a>
+			</p>
+			
+		</div>
+	</div>
+	 <div class="w3-row w3-container ">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/board.html"  target="_blank"><img src="home/img/board.svg" alt="share" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Browse, publish,  share and comment drawings<br/>
+			<a href="http://drawsvg.org/board.html"  target="_blank">Browse</a>
+			</p>
+			
+		</div>
+	</div>
+	
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/tools.html#meme:"  target="_blank"><img src="home/img/meme-mandrill.jpg" alt="Meme maker" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Create memes for your favorite photos.<br/>
+			<a href="http://drawsvg.org/tools.html#meme:"  target="_blank">Create memes</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/tools.html#scan:"  target="_blank"><img src="home/img/plage.svg" alt="Photo to SVG" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Turn your photos into artistic drawings.<br/>
+			<a href="http://drawsvg.org/tools.html#scan:"  target="_blank">Have fun</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/drawsvg.html#showcase:"  target="_blank"><img src="home/img/camera.svg" alt="showcases tool" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Learn to use the editor.<br/>
+			<a href="http://drawsvg.org/drawsvg.html#showcase:"  target="_blank">Learn</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+				<a href="http://drawsvg.org/tools.html#optimize:"  target="_blank"><img src="home/img/optim.svg" alt="Optimize SVG" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			 <p>Optimize your SVG files.<br/>
+			<a href="http://drawsvg.org/tools.html#optimize:"  target="_blank">Optimize</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+				<a href="http://drawsvg.org/tools.html#svgPNG:"  target="_blank"><img src="home/img/picture.svg" alt="SVG to PNG" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			 <p>Convert your SVG files in PNG images.<br/>
+			<a href="http://drawsvg.org/tools.html#svgPNG:"  target="_blank">Convert</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/tools.html#encodeImage:"  target="_blank"><img src="home/img/services.svg" alt="Encode image" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Encode images in base64 for HTML inline insert.<br/>
+			<a href="http://drawsvg.org/tools.html#encodeImage:"  target="_blank">Encode</a>
+			</p>
+		</div>
+	</div>
+	<div class="w3-row w3-container">
+		<div class="w3-col w3-container" style="width:40%;padding:0;">
+			<div class="w3-center w3-margin">
+			<a href="http://drawsvg.org/tools.html#shapemap:"  target="_blank"><img src="home/img/shapemap.svg" alt="Generate custom shape catalog" /></a>
+			</div>
+		</div>
+		<div class="w3-col w3-container" style="width:60%;padding:0;">
+			<p>Generate a custom drawsvg shape catalog.<br/>
+			<a href="http://drawsvg.org/tools.html#shapemap:"  target="_blank">Generate</a>
+			</p>
+		</div>
+	</div>
+ </div>
+</nav>
+  <!-- Navbar (sit on top) -->
+<nav class="w3-top">
+  <div class="w3-bar w3-theme w3-wide w3-padding w3-card">
+  <div class="w3-button  w3-left" onclick="w3_open()"><i class="fa fa-navicon"></i></div>
+   <span class="w3-left" style="margin-right:2px;margin-top:8px;">
+	<img src="home/img/jay-rond.svg" alt="draw" style="margin-left:2px;margin-right:2px;" width="24px" height="24px" />
+   </span>
+    <div class="w3-bar-item">Welcome to <b>DRAW SVG</b><span style="font-size:smaller;font-style:italic;"> free drawing tools</span></div>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="http://drawsvg.org/doc/index.html" target="_blank" class="w3-bar-item w3-button">Documentation</a>
+      <a href="mailto:joseph.liard@drawsvg.org"  class="w3-bar-item w3-button">Contact</a>
+     <a class="w3-bar-item w3-button" href="http://drawsvg.org" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxwYXRoIGQ9Ik02NCAzNi45MDNsLTMyLTI0LjgzOS0zMiAyNC44Mzl2LTEwLjEyN2wzMi0yNC44MzkgMzIgMjQuODM5ek01NiAzNnYyNGgtMTZ2LTE2aC0xNnYxNmgtMTZ2LTI0bDI0LTE4eiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" height="20px"/></a>
+    </div>
+  </div>
+</nav>
+<!-- Content -->
+<main class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+<div class="w3-row w3-container w3-margin">
+	<p class=" w3-large">DRAW SVG  tools are online drawing tools totally <b>free</b> and easy to use, full documented and professional qualities.<br/>
+	The editor is available in different modes (<a href="http://drawsvg.org/drawsvg.html" target="_blank">online</a>, desktop, 
+	<a href="http://drawsvg.org/#devtools" target="_blank">embed</a>).</p>
+	<div class="w3-half w3-container" style="padding:0;">
+	<div class="w3-card-4 w3-border cardTool w3-margin" style="padding:0;">
+		<header class="w3-container w3-theme-l3">
+				<h3><b>DRAW-SVG Desktop Editor</b></h3>
+		</header>
+			<div class="w3-row w3-container">
+				<div class="w3-col w3-container" style="width:40%;padding:0;">
+					<div class="w3-center w3-margin">
+					<a href="drawsvg/edrawsvg.html#draw:electron=true"><img src="home/img/jay.svg" alt="draw" /></a>
+					</div>
+				</div>
+				<div class="w3-col w3-container" style="width:60%;padding:0;">
+					<p>Edit your SVG drawings.</p>
+					<p><a class="link w3-large" href="drawsvg/edrawsvg.html#draw:electron=true">Start DRAW-SVG Editor</a></p>
+					<p>Desktop release version <span id="version">vX.Y.Z</span>, <br>
+					using <a href="http://nodejs.org/" target="_blank">Node.js</a> <script>document.write(process.versions.node)</script>,<br>
+    <a href="http://www.chromium.org/" target="_blank">Chromium</a> <script>document.write(process.versions.chrome)</script>,<br>
+    <a href="http://www.electronjs.org/" target="_blank">Electron</a> <script>document.write(process.versions.electron)</script>.</p>
+				</div>
+			</div>
+			
+			<footer class="w3-container w3-theme-l5">
+			  <p>See <a href="http://drawsvg.org/drawsvg.html#showcase:" target="_blank">showcases</a> to discover how to use the editor</p>
+			</footer>
+		</div>
+	</div>
+	<div class="w3-half w3-container" style="padding:0;">
+		<div class="keyfeature">
+			<ul>
+			<li>Use the <b>editor</b> to create and edit your SVG drawings.</li>
+			<li>Optimize their size with the <a href="http://drawsvg.org/tools.html#optimize:" target="_blank"><b>optimizer</b></a> tool.</li>
+			<li>Share and publish them with the <a href="http://drawsvg.org/board.html" target="_blank"><b>board</b></a> tool.</li>
+			<li>Generate kinds of <i>aquarelle</i> with the photo to svg <a href="http://drawsvg.org/tools.html#scan:" target="_blank"><b>generator</b></a>  tool.</li>
+			<li>Create easy simple <a href="http://drawsvg.org/tools.html#meme:" target="_blank"><b>memes</b></a> with images.</li>
+			<li>Discover how to use editor features with the 
+			<a href="http://drawsvg.org/drawsvg.html#showcase:" target="_blank"><b>showcases</b></a> tool with use cases animations.</li>
+			<li>Generate your personal shape <a href="http://drawsvg.org/tools.html#shapemap:" target="_blank"><b>catalog</b></a>  to import in the editor to customized it with your interest field.</li>
+			<li>Use additional web designer tools as the png format svg <a href="http://drawsvg.org/tools.html#svgPNG:" target="_blank"><b>converter</b></a> and the image 
+			<a href="http://drawsvg.org/tools.html#encodeImage:" target="_blank"><b>encoder</b></a> to enrich the contents of your html pages.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</main>
+
+  
+    <!-- Footer -->
+<footer class="w3-bar w3-light-grey w3-bottom">
+  <div class="w3-bar-item">
+  <p>Copyright &copy;2021 <a href="http://drawsvg.org" target="_blank">Draw SVG</a>. All Rights Reserved.</p>
+  </div>
+  <div class="w3-bar-item w3-right">
+   <p><a href="http://drawsvg.org/home/release-notes.html" title="Release notes" target="_blank">Release notes</a> | Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank">w3.css</a>
+  <br><span style="font-size:smaller;font-style:italic">updated on January 2021</span></p>
+  </div>
+</footer>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+      // Display the current version
+      let version = window.location.hash.substring(1);
+     document.getElementById('version').innerText = version.replace(".0","");
+    </script>
+    
+   
+  </body>
+</html>
