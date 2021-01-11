@@ -2,8 +2,8 @@
 const {app, dialog , BrowserWindow, Menu} = require('electron')
 const ipc = require('electron').ipcMain
 
-// il faut un repo Gihub
-//require('update-electron-app')()
+// auto update
+require('update-electron-app')()
 
 let mainWindow = null;
 let modifiedState = false;
