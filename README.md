@@ -2,6 +2,10 @@
 
  **SVG** Editor from [DRAWSVG](https://drawsvg.org)
 
+## Using
+
+You can [download the latest release](https://github.com/DRAWSVG/drawsvg-editor/releases) for your operating system or build it yourself (see below).
+
 
 ## Building
 
