@@ -19,6 +19,6 @@ Then you can use npm or yarn tool as package manager.
 ```bash
 $ git clone https://github.com/DRAWSVG/drawsvg-editor
 $ cd drawsvg-editor
-$ npm install
-$ npm start
+$ npm install (or yarn install)
+$ npm start (or yarn start)
 
