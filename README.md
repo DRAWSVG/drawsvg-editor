@@ -1,10 +1,11 @@
 ## <img src="https://github.com/DRAWSVG/drawsvg-editor/blob/main/build/jay-rond.png?raw=true" width="32px" align="center" alt="DRAWSVG icon"> SVG Editor
 
- **SVG** Editor from [DRAWSVG](https://drawsvg.org)
+ **SVG** Editor from [DRAWSVG](https://drawsvg.org) drawing tools
  
  This application is builded with [DRAWSVG dev tools](http://drawsvg.org/#devtools)
+ and is also available [online](http://drawsvg.org/drawsvg.html)
  
- See [documentation](http://drawsvg.org/doc/index.html)
+ See [documentation](http://drawsvg.org/doc/index.html) [showcases](http://drawsvg.org/drawsvg.html#showcase:)
 
 ## Using
 
