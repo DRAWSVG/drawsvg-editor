@@ -3,11 +3,12 @@ var svgEngineApp = {};
 
 // Notify SVG engine ready, init UI
 svgEngineApp.onSVGEngineLoad = function(engine) {
+	console.log("svgEngineApp.onSVGEngineLoad "+engine);
 	svgEngineApp.engine=engine;
 };
-
+// Set main view implementation based on SVGEngineViews
 svgEngineApp.setMainView = function(mainView) {
-	//alert("svgEngineApp.setMainView "+mainView);
+	console.log("svgEngineApp.setMainView "+mainView);
 	svgEngineApp.mainView = mainView;
 };
 

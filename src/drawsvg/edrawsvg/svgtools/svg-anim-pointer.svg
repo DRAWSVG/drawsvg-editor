@@ -33,6 +33,7 @@
 		fill:black;
 		pointer-events:none;
 		font-size:14pt;
+		-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;
 	}
 	
   ]]></style>
