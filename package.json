@@ -9,7 +9,7 @@
   ],
   "license": "LGPL-3.0-only",
   "main": "src/main.js",
-  "version": "9.3.0",
+  "version": "9.5.0",
   "author": "joseph LIARD",
   "scripts": {
     "start": "electron .",
