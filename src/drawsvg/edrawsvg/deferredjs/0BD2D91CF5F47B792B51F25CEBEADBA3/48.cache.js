@@ -1,0 +1,1 @@
+$wnd.edrawsvg.runAsyncCallback48("function _Be(a){this.g=a}\nfunction j1e(a,b){Y7d(a.g)&&vj(5,new Y1e(b))}\nCvb(1495,jdh,Gch);_.Rc=function ZBe(){var a;a=new _Be(this);j1e(this.g.D.o,a)};Cvb(1496,1,{},_Be);var Z1=K1b(Beh,'DocumentPresenter/6/1',1496);v1g(uj)(48);\n//# sourceURL=edrawsvg-48.js\n")
